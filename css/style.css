@@ -1,28 +1,196 @@
+:root {
+    --background: #181614;
+    --text: #e8dfcf;
+    --muted: #8b8378;
+    --panel: #24201d;
+    --border: #4d463f;
+    --error: #d84b4b;
+}
+
+* {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
     min-height: 100vh;
+    padding: 48px 24px;
 
     display: flex;
     justify-content: center;
     align-items: center;
 
-    background: #181614;
-    color: #e8dfcf;
+    background: var(--background);
+    color: var(--text);
 
     font-family: Georgia, serif;
 }
 
 .page {
-    text-align: center;
+    width: min(900px, 100%);
 }
 
-button {
-    padding: 12px 24px;
+h1 {
+    margin: 0;
+    text-align: center;
+    letter-spacing: 0.08em;
+}
 
-    font-size: 18px;
+.subtitle {
+    margin: 10px 0 36px;
+    text-align: center;
+    color: var(--muted);
+    font-style: italic;
+}
+
+.link-list {
+    display: grid;
+    gap: 14px;
+}
+
+.link-row {
+    display: grid;
+    grid-template-columns: minmax(190px, 1fr) minmax(320px, 1.4fr);
+    gap: 24px;
+    align-items: center;
+
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border);
+}
+
+.section-link {
+    font-size: 20px;
+    color: var(--text);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    transition: opacity 160ms ease;
+}
+
+.section-link.disabled {
+    color: var(--muted);
+    text-decoration: none;
+    cursor: not-allowed;
+    opacity: 0.55;
+    pointer-events: none;
+}
+
+.section-link.unlocked {
+    cursor: pointer;
+    opacity: 1;
+}
+
+.passcode-control {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 10px;
+}
+
+.passcode-input {
+    width: 100%;
+    min-width: 0;
+    padding: 10px 12px;
+
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    outline: none;
+
+    background: var(--panel);
+    color: var(--text);
+
+    font: inherit;
+    font-size: 16px;
+
+    transition: border-color 120ms ease, box-shadow 120ms ease;
+}
+
+.passcode-input::placeholder {
+    color: var(--muted);
+}
+
+.passcode-input:focus {
+    border-color: var(--text);
+}
+
+.passcode-input.invalid {
+    border-color: var(--error);
+    box-shadow: 0 0 0 1px var(--error);
+}
+
+.verify-button {
+    padding: 10px 18px;
+
+    border: 1px solid var(--border);
+    border-radius: 4px;
+
+    background: var(--panel);
+    color: var(--text);
+
+    font: inherit;
+    font-size: 16px;
     cursor: pointer;
 }
 
-.hidden {
-    display: none;
+.verify-button:hover {
+    border-color: var(--text);
+}
+
+.verify-button:disabled,
+.passcode-input:disabled {
+    opacity: 0.45;
+    cursor: default;
+}
+
+.tooltip {
+    position: absolute;
+    z-index: 10;
+    left: 0;
+    top: calc(100% + 8px);
+
+    padding: 8px 10px;
+    border: 1px solid var(--error);
+    border-radius: 4px;
+
+    background: #2a1a19;
+    color: #f2c1bd;
+
+    font-size: 14px;
+    white-space: nowrap;
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-4px);
+    transition: opacity 120ms ease, transform 120ms ease, visibility 120ms ease;
+
+    pointer-events: none;
+}
+
+.tooltip.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.hidden-passcode {
+    margin: 28px 0 0;
+    color: var(--background);
+    user-select: text;
+}
+
+@media (max-width: 700px) {
+    body {
+        padding: 32px 16px;
+        align-items: flex-start;
+    }
+
+    .link-row {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        padding: 14px 0 20px;
+    }
+
+    .tooltip {
+        white-space: normal;
+        max-width: 100%;
+    }
 }
