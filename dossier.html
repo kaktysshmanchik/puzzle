@@ -76,7 +76,7 @@
                     <div class="ability-name">CHA</div>
                     <div class="ability-score">17</div>
                     <div class="ability-mod">+3</div>
-                    <p>Long voice messages. Gorgeous voice (scientifically proved). Teasing. Detailed conversations. Somehow capable of discussing counterarguments without interpreting them as an attack on his masculinity.</p>
+                    <p>Long voice messages. Gorgeous voice (scientifically proved). Detailed conversations. Somehow capable of discussing counterarguments without interpreting them as an attack on his masculinity. Hot.</p>
                 </article>
             </div>
 
@@ -187,22 +187,38 @@
             <div class="section-heading"><h2>Special Abilities</h2></div>
 
             <div class="feature-grid">
-                <article class="feature-card">
-                    <h3>Practical Bastard</h3>
-                    <p>Once Jonathan notices a practical job, there is a significant risk that he will simply... do it.</p>
-                    <p class="micro-heading">Possible targets include</p>
-                    <ul class="two-column-list">
-                        <li>laundry</li>
-                        <li>dishes</li>
-                        <li>grocery shopping</li>
-                        <li>furniture</li>
-                        <li>gardening</li>
-                        <li>rubbish</li>
-                        <li>recycling</li>
-                        <li>outdoor cleaning</li>
-                        <li>random household construction</li>
-                    </ul>
-                    <p>This ability causes confusion in observers accustomed to weaponised incompetence.</p>
+                <article
+                    class="feature-card flip-card"
+                    id="practicalBastardCard"
+                    role="button"
+                    tabindex="0"
+                    aria-pressed="false"
+                    aria-label="Practical Bastard. Click to reveal."
+                >
+                    <div class="flip-card-inner">
+                        <div class="flip-card-face flip-card-front">
+                            <h3>Practical Bastard</h3>
+                            <p>Once Jonathan notices a practical job, there is a significant risk that he will simply... do it.</p>
+                            <p class="micro-heading">Possible targets include</p>
+                            <ul class="two-column-list">
+                                <li>laundry</li>
+                                <li>dishes</li>
+                                <li>grocery shopping</li>
+                                <li>furniture</li>
+                                <li>gardening</li>
+                                <li>rubbish</li>
+                                <li>recycling</li>
+                                <li>outdoor cleaning</li>
+                                <li>random household construction</li>
+                            </ul>
+                            <p>This ability causes confusion in observers accustomed to weaponised incompetence.</p>
+                            <span class="flip-hint">Click to inspect evidence</span>
+                        </div>
+                        <div class="flip-card-face flip-card-back" aria-hidden="true">
+                            <img src="assets/images/dossier/net.png" alt="Evidence for Practical Bastard">
+                            <span class="flip-hint">Click to return</span>
+                        </div>
+                    </div>
                 </article>
 
                 <article class="feature-card">
@@ -424,5 +440,6 @@
         </section>
     </article>
 </main>
+<script src="js/dossier.js"></script>
 </body>
 </html>
