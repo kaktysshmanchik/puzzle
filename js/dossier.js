@@ -1,29 +1,23 @@
-const practicalBastardCard = document.getElementById("practicalBastardCard");
+const flipCards = document.querySelectorAll(".flip-card");
 
-if (practicalBastardCard) {
-    const backFace = practicalBastardCard.querySelector(".flip-card-back");
+flipCards.forEach((card) => {
+    const backFace = card.querySelector(".flip-card-back");
 
-    function togglePracticalBastard() {
-        const isFlipped = practicalBastardCard.classList.toggle("flipped");
-        practicalBastardCard.setAttribute("aria-pressed", String(isFlipped));
-        practicalBastardCard.setAttribute(
-            "aria-label",
-            isFlipped
-                ? "Practical Bastard evidence. Click to return."
-                : "Practical Bastard. Click to reveal."
-        );
+    function toggleCard() {
+        const isFlipped = card.classList.toggle("flipped");
+        card.setAttribute("aria-pressed", String(isFlipped));
 
         if (backFace) {
             backFace.setAttribute("aria-hidden", String(!isFlipped));
         }
     }
 
-    practicalBastardCard.addEventListener("click", togglePracticalBastard);
+    card.addEventListener("click", toggleCard);
 
-    practicalBastardCard.addEventListener("keydown", (event) => {
+    card.addEventListener("keydown", (event) => {
         if (event.key === "Enter" || event.key === " ") {
             event.preventDefault();
-            togglePracticalBastard();
+            toggleCard();
         }
     });
-}
+});
