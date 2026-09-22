@@ -38,6 +38,7 @@
 
             <div class="ability-grid">
                 <article class="ability-card">
+                    <!-- [UPDATE] add parts of VM. -->
                     <div class="ability-name">STR</div>
                     <div class="ability-score">15</div>
                     <div class="ability-mod">+2</div>
@@ -45,6 +46,7 @@
                 </article>
 
                 <article class="ability-card">
+                    <!-- [UPDATE] add parts of VM. -->
                     <div class="ability-name">DEX</div>
                     <div class="ability-score">14</div>
                     <div class="ability-mod">+2</div>
@@ -52,6 +54,7 @@
                 </article>
 
                 <article class="ability-card">
+                    <!-- [UPDATE] add parts of VM. -->
                     <div class="ability-name">CON</div>
                     <div class="ability-score">17</div>
                     <div class="ability-mod">+3</div>
@@ -59,6 +62,7 @@
                 </article>
 
                 <article class="ability-card">
+                    <!-- [UPDATE] add parts of VM. -->
                     <div class="ability-name">INT</div>
                     <div class="ability-score">18</div>
                     <div class="ability-mod">+4</div>
@@ -66,6 +70,7 @@
                 </article>
 
                 <article class="ability-card">
+                    <!-- [UPDATE] add parts of VM. -->
                     <div class="ability-name">WIS</div>
                     <div class="ability-score">16</div>
                     <div class="ability-mod">+3</div>
@@ -73,6 +78,7 @@
                 </article>
 
                 <article class="ability-card">
+                    <!-- [UPDATE] add parts of VM. -->
                     <div class="ability-name">CHA</div>
                     <div class="ability-score">17</div>
                     <div class="ability-mod">+3</div>
@@ -157,13 +163,25 @@
             <div class="section-heading"><h2>Class Features</h2></div>
 
             <div class="feature-grid">
-                <article class="feature-card">
+                <article class="feature-card flip-card" id="subject-matter-expert-card" role="button" tabindex="0" aria-pressed="false" aria-label="Subject Matter Expert">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-face flip-card-front">
+
                     <h3>Subject Matter Expert</h3>
                     <p>May spend ten minutes explaining something and being wrong about it. Will end up being right about something else.</p>
                     <p>Gain advantage on checks involving systems he understands well.</p>
+                
+                        </div>
+                        <div class="flip-card-face flip-card-back" aria-hidden="true">
+                            <img src="assets/images/dossier/sme.png" alt="Subject Matter Expert" loading="lazy">
+                        </div>
+                    </div>
                 </article>
 
-                <article class="feature-card">
+                <article class="feature-card flip-card" id="qa-resistance-card" role="button" tabindex="0" aria-pressed="false" aria-label="QA Resistance">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-face flip-card-front">
+
                     <h3>QA Resistance</h3>
                     <p>When receiving criticism of something he created, Jonathan does not automatically enter <strong>Defensive Man Mode</strong>.</p>
                     <ol>
@@ -173,12 +191,27 @@
                         <li>fix the bloody thing.</li>
                     </ol>
                     <p class="flavour-line">A legendary ability.</p>
+                
+                        </div>
+                        <div class="flip-card-face flip-card-back" aria-hidden="true">
+                            <img src="assets/images/dossier/field.png" alt="QA Resistance" loading="lazy">
+                        </div>
+                    </div>
                 </article>
 
-                <article class="feature-card">
+                <article class="feature-card flip-card" id="veteran-s-endurance-card" role="button" tabindex="0" aria-pressed="false" aria-label="Veteran's Endurance">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-face flip-card-front">
+
                     <h3>Veteran's Endurance</h3>
                     <p>Once per long rest, Jonathan may remember that he survived boathouse, Florida and shed and therefore probably isn't going to be defeated by this particular Tuesday.</p>
                     <p>Immediately regain <strong>2d8 + CON</strong> hit points.</p>
+                
+                        </div>
+                        <div class="flip-card-face flip-card-back" aria-hidden="true">
+                            <img src="assets/images/dossier/pancakes.png" alt="Veteran's Endurance" loading="lazy">
+                        </div>
+                    </div>
                 </article>
             </div>
         </section>
@@ -193,7 +226,7 @@
                     role="button"
                     tabindex="0"
                     aria-pressed="false"
-                    aria-label="Practical Bastard. Click to reveal."
+                    aria-label="Practical Bastard"
                 >
                     <div class="flip-card-inner">
                         <div class="flip-card-face flip-card-front">
@@ -214,12 +247,15 @@
                             <p>This ability causes confusion in observers accustomed to weaponised incompetence.</p>
                         </div>
                         <div class="flip-card-face flip-card-back" aria-hidden="true">
-                            <img src="assets/images/dossier/net.png" alt="Evidence for Practical Bastard">
+                            <img src="assets/images/dossier/net.png" alt="Practical Bastard" loading="lazy">
                         </div>
                     </div>
                 </article>
 
-                <article class="feature-card">
+                <article class="feature-card flip-card" id="long-voice-message-card" role="button" tabindex="0" aria-pressed="false" aria-label="Long Voice Message">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-face flip-card-front">
+
                     <h3>Long Voice Message</h3>
                     <dl class="spell-details">
                         <div><dt>Casting Time</dt><dd>Anywhere from 2 minutes to For Fuck's Sake, Jonathan</dd></div>
@@ -230,19 +266,37 @@
                     <p>During casting, roll <strong>1d6</strong> additional topics.</p>
                     <p>The original subject may eventually return.</p>
                     <p>Listeners who enjoy him gain <strong>Comfort</strong>.</p>
+                
+                        </div>
+                        <div class="flip-card-face flip-card-back" aria-hidden="true">
+                            <img src="assets/images/dossier/paint.png" alt="Long Voice Message" loading="lazy">
+                        </div>
+                    </div>
                 </article>
 
-                <article class="feature-card">
+                <article class="feature-card flip-card" id="remember-that-thing-you-said-card" role="button" tabindex="0" aria-pressed="false" aria-label="Remember That Thing You Said?">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-face flip-card-front">
+
                     <h3>Remember That Thing You Said?</h3>
                     <p>Jonathan recalls a minor detail from an earlier conversation that everyone reasonably assumed had disappeared into the void.</p>
                     <p>Target takes <strong>1d8 emotional damage</strong>.</p>
                     <p>If target is girlfriend, damage is converted into affection.</p>
+                
+                        </div>
+                        <div class="flip-card-face flip-card-back" aria-hidden="true">
+                            <img src="assets/images/dossier/numpty.png" alt="Remember That Thing You Said?" loading="lazy">
+                        </div>
+                    </div>
                 </article>
             </div>
         </section>
 
         <section class="sheet-section split-section">
-            <article class="sheet-panel">
+            <article class="sheet-panel flip-card panel-flip" id="gamer-traits-card" role="button" tabindex="0" aria-pressed="false" aria-label="Gamer Traits">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-face flip-card-front">
+
                 <div class="section-heading"><h2>Gamer Traits</h2></div>
 
                 <div class="subfeature">
@@ -263,9 +317,16 @@
                         <li>+3 Probability That Four Hours Mysteriously Disappear</li>
                     </ul>
                 </div>
-            </article>
+            
+                        </div>
+                        <div class="flip-card-face flip-card-back" aria-hidden="true">
+                            <img src="assets/images/dossier/desk.png" alt="Gamer Traits" loading="lazy">
+                        </div>
+                    </div>
+                </article>
 
             <article class="sheet-panel">
+                <!-- [UPDATE] update the hours and add a picture later. -->
                 <div class="section-heading"><h2>Game Lore</h2></div>
                 <dl class="compact-list game-hours">
                     <div><dt>Terraria</dt><dd>634.5</dd></div>
@@ -283,7 +344,10 @@
         </section>
 
         <section class="sheet-section split-section">
-            <article class="sheet-panel">
+            <article class="sheet-panel flip-card panel-flip" id="tool-proficiencies-card" role="button" tabindex="0" aria-pressed="false" aria-label="Tool Proficiencies">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-face flip-card-front">
+
                 <div class="section-heading"><h2>Tool Proficiencies</h2></div>
                 <ul class="plain-list">
                     <li>DocuSign documentation</li>
@@ -297,9 +361,18 @@
                 </ul>
                 <p><strong>Browser proficiency:</strong> Firefox</p>
                 <p>Jonathan has ridiculous resistance to Chrome.</p>
-            </article>
+            
+                        </div>
+                        <div class="flip-card-face flip-card-back" aria-hidden="true">
+                            <img src="assets/images/dossier/tools.png" alt="Tool Proficiencies" loading="lazy">
+                        </div>
+                    </div>
+                </article>
 
-            <article class="sheet-panel">
+            <article class="sheet-panel flip-card panel-flip" id="inventory-card" role="button" tabindex="0" aria-pressed="false" aria-label="Inventory">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-face flip-card-front">
+
                 <div class="section-heading"><h2>Inventory</h2></div>
                 <ul class="inventory-list">
                     <li>Plain T-shirts</li>
@@ -314,25 +387,52 @@
                     <li>D20</li>
                     <li>One Italian-layout keyboard acquired through an administrative critical failure</li>
                 </ul>
-            </article>
+            
+                        </div>
+                        <div class="flip-card-face flip-card-back" aria-hidden="true">
+                            <img src="assets/images/dossier/alligator.png" alt="Inventory" loading="lazy">
+                        </div>
+                    </div>
+                </article>
         </section>
 
         <section class="sheet-section">
             <div class="section-heading"><h2>Feats</h2></div>
 
             <div class="feature-grid">
-                <article class="feature-card">
+                <article class="feature-card flip-card" id="accident-free-driver-card" role="button" tabindex="0" aria-pressed="false" aria-label="Accident-Free Driver">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-face flip-card-front">
+
                     <h3>Accident-Free Driver</h3>
                     <p>No known driving accidents.</p>
                     <p>Gain proficiency with Land Vehicles.</p>
+                
+                        </div>
+                        <div class="flip-card-face flip-card-back" aria-hidden="true">
+                            <img src="assets/images/dossier/car.png" alt="Accident-Free Driver" loading="lazy">
+                        </div>
+                    </div>
                 </article>
 
-                <article class="feature-card">
+                <article class="feature-card flip-card" id="dog-person-card" role="button" tabindex="0" aria-pressed="false" aria-label="Dog Person">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-face flip-card-front">
+
                     <h3>Dog Person</h3>
                     <p>Dogs generally count as friendly creatures unless evidence indicates otherwise.</p>
+                
+                        </div>
+                        <div class="flip-card-face flip-card-back" aria-hidden="true">
+                            <img src="assets/images/dossier/dogs.png" alt="Dog Person" loading="lazy">
+                        </div>
+                    </div>
                 </article>
 
-                <article class="feature-card">
+                <article class="feature-card flip-card" id="lego-veteran-card" role="button" tabindex="0" aria-pressed="false" aria-label="LEGO Veteran">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-face flip-card-front">
+
                     <h3>LEGO Veteran</h3>
                     <p class="micro-heading">Childhood specialisations</p>
                     <ul>
@@ -343,6 +443,12 @@
                     </ul>
                     <p>Adult Jonathan remains vulnerable to sufficiently impressive LEGO sets.</p>
                     <p>Saving throws against enormous sets are made with disadvantage.</p>
+                
+                        </div>
+                        <div class="flip-card-face flip-card-back" aria-hidden="true">
+                            <img src="assets/images/dossier/lego.png" alt="LEGO Veteran" loading="lazy">
+                        </div>
+                    </div>
                 </article>
             </div>
         </section>
@@ -351,13 +457,25 @@
             <div class="section-heading"><h2>Flaws</h2></div>
 
             <div class="feature-grid">
-                <article class="feature-card flaw-card">
+                <article class="feature-card flaw-card flip-card" id="conflict-avoidance-card" role="button" tabindex="0" aria-pressed="false" aria-label="Conflict Avoidance">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-face flip-card-front">
+
                     <h3>Conflict Avoidance</h3>
                     <p>Jonathan may delay entering encounters labelled <strong>Awkward Conversation</strong>.</p>
                     <p>Unfortunately, avoided encounters remain on the map.</p>
+                
+                        </div>
+                        <div class="flip-card-face flip-card-back" aria-hidden="true">
+                            <img src="assets/images/dossier/dinner.png" alt="Conflict Avoidance" loading="lazy">
+                        </div>
+                    </div>
                 </article>
 
-                <article class="feature-card flaw-card">
+                <article class="feature-card flaw-card flip-card" id="just-one-more-game-card" role="button" tabindex="0" aria-pressed="false" aria-label="Just One More Game">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-face flip-card-front">
+
                     <h3>Just One More Game</h3>
                     <p>Must make a Wisdom saving throw when presented with:</p>
                     <ul>
@@ -366,13 +484,28 @@
                         <li>fun co-op</li>
                         <li>enormous crafting trees</li>
                     </ul>
+                
+                        </div>
+                        <div class="flip-card-face flip-card-back" aria-hidden="true">
+                            <img src="assets/images/dossier/books.png" alt="Just One More Game" loading="lazy">
+                        </div>
+                    </div>
                 </article>
 
-                <article class="feature-card flaw-card">
+                <article class="feature-card flaw-card flip-card" id="tangent-cascade-card" role="button" tabindex="0" aria-pressed="false" aria-label="Tangent Cascade">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-face flip-card-front">
+
                     <h3>Tangent Cascade</h3>
                     <p>A conversation about breakfast may unexpectedly involve:</p>
                     <p>Star Wars, employment, childhood LEGO, game design, dogs, Ireland, zombie survival strategy and the socioeconomic implications of something nobody remembers bringing up.</p>
                     <p>There is no known cure.</p>
+                
+                        </div>
+                        <div class="flip-card-face flip-card-back" aria-hidden="true">
+                            <img src="assets/images/dossier/vm.png" alt="Tangent Cascade" loading="lazy">
+                        </div>
+                    </div>
                 </article>
             </div>
         </section>
@@ -413,6 +546,7 @@
         </section>
 
         <section class="sheet-section synergy-section">
+            <!-- [UPDATE] add parts of VM where he curses at me. -->
             <div class="section-heading"><h2>Party Synergy: Kathy</h2></div>
 
             <div class="synergy-grid">
