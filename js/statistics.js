@@ -90,7 +90,7 @@
             checksumInput.classList.add("invalid");
 
             if (checksumStatus) {
-                checksumStatus.textContent = "Checksum mismatch. Recheck the marked values and sequence.";
+                checksumStatus.textContent = "Checksum mismatch.";
                 checksumStatus.classList.remove("is-valid");
             }
         }
