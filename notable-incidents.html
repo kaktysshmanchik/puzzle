@@ -46,6 +46,7 @@
                     <button class="stat-verify-button" type="button">Verify</button>
                 </div>
                 <div class="stat-detail stat-fact-stack" hidden>
+                    <p class="stat-checksum-clue"><span aria-hidden="true">▲</span> <strong>158,011 words total.</strong></p>
                     <p><strong>That is basically The Lord of the Rings: The Two Towers.</strong> A commonly cited word count for <em>The Two Towers</em> is 156,198.</p>
                     <p><strong>1.66 Hobbits.</strong> <em>The Hobbit</em> is listed at 95,022 words.</p>
                     <p>158,011 words is roughly <strong>632 standard manuscript pages</strong>, using the usual rough estimate of 250 words per page.</p>
@@ -123,6 +124,7 @@
                     <button class="stat-verify-button" type="button">Verify</button>
                 </div>
                 <div class="stat-detail stat-question-breakdown" hidden>
+                    <p class="stat-checksum-clue"><span aria-hidden="true">◆</span> <strong>1,559 questions total.</strong></p>
                     <p><strong>Kathy:</strong> 922 questions &nbsp;·&nbsp; <strong>Jonathan:</strong> 637.</p>
                     <p>Messages containing ≥1 question: Kathy 71 / 105 (67.6%); Jonathan 76 / 107 (71.0%).</p>
                     <p>Messages containing ≥2 questions: Kathy 66 / 105 (62.9%); Jonathan 67 / 107 (62.6%).</p>
@@ -228,6 +230,7 @@
                     <button class="stat-verify-button" type="button">Verify</button>
                 </div>
                 <div class="stat-detail stat-fact-stack" hidden>
+                    <p class="stat-checksum-clue"><span aria-hidden="true">●</span> <strong>604 voice messages.</strong></p>
                     <p>Total length: <strong>39 hours, 49 minutes, 2 seconds.</strong> It is only <strong>10 minutes, 58 seconds</strong> short of a full 40-hour workweek.</p>
                     <p>Average voice message: <strong>3:57</strong>.</p>
 
@@ -265,6 +268,7 @@
                     <button class="stat-verify-button" type="button">Verify</button>
                 </div>
                 <div class="stat-detail stat-message-split" hidden>
+                    <p class="stat-checksum-clue"><span aria-hidden="true">■</span> <strong>6,869 Discord text messages total.</strong></p>
                     <p><strong>Jonathan:</strong> 3,508 — 51.07%</p>
                     <p><strong>Kathy:</strong> 3,361 — 48.93%</p>
                     <p><strong>Difference:</strong> 147 messages.</p>
@@ -296,6 +300,38 @@
                     <button class="stat-verify-button" type="button">Verify</button>
                 </div>
             </article>
+        </div>
+    </section>
+
+    <section class="statistics-section stat-checksum-section" aria-labelledby="statistics-checksum-title">
+        <div class="statistics-section-heading">
+            <h2 id="statistics-checksum-title">Archive checksum</h2>
+            <span>FINAL VERIFICATION</span>
+        </div>
+
+        <div class="stat-checksum-panel">
+            <p class="stat-checksum-sequence">Checksum sequence: <strong>◆ ■ ● ▲</strong></p>
+            <p class="stat-checksum-hint">Read the marked values in sequence and enter the resulting checksum.</p>
+
+            <div class="stat-checksum-entry" data-stat-checksum>
+                <input
+                    class="stat-checksum-input"
+                    type="text"
+                    inputmode="numeric"
+                    autocomplete="off"
+                    aria-label="Archive checksum"
+                    placeholder="Enter checksum"
+                >
+                <button class="stat-checksum-button" type="button">Verify checksum</button>
+            </div>
+
+            <p class="stat-checksum-status" data-checksum-status role="status" aria-live="polite"></p>
+
+            <div class="stat-checksum-token" data-checksum-token hidden>
+                <span>CHECKSUM VALID // PATCH NOTES PASSCODE</span>
+                <strong>LX181xIZ1wX2SWtGNSgQnDufhdB</strong>
+                <small>Copy it exactly. The archive has standards, apparently.</small>
+            </div>
         </div>
     </section>
 </main>
