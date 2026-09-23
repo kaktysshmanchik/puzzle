@@ -812,6 +812,20 @@ h1 {
     background: rgba(255, 255, 255, 0.18);
 }
 
+.dossier-revealed-passcode {
+    margin: 2px 0 0 !important;
+    padding: 8px 10px;
+    border-top: 1px solid rgba(82, 58, 37, 0.35);
+    color: #6f2a22;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-align: center;
+    overflow-wrap: anywhere;
+    user-select: all;
+}
+
 
 @media (prefers-reduced-motion: reduce) {
     .flip-card-inner {
