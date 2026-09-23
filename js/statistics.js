@@ -43,4 +43,10 @@
             }
         });
     });
+
+    document.querySelectorAll("[data-message-placeholder]").forEach((link) => {
+        link.addEventListener("click", (event) => {
+            event.preventDefault();
+        });
+    });
 })();
