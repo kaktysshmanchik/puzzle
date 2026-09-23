@@ -44,6 +44,69 @@
         });
     });
 
+    const checksumRoot = document.querySelector("[data-stat-checksum]");
+    const checksumStatus = document.querySelector("[data-checksum-status]");
+    const checksumToken = document.querySelector("[data-checksum-token]");
+
+    if (checksumRoot) {
+        const checksumInput = checksumRoot.querySelector(".stat-checksum-input");
+        const checksumButton = checksumRoot.querySelector(".stat-checksum-button");
+        const expectedChecksum = "15596869604158011";
+
+        function clearChecksumError() {
+            checksumInput.classList.remove("invalid");
+
+            if (checksumStatus && checksumToken?.hidden) {
+                checksumStatus.textContent = "";
+                checksumStatus.classList.remove("is-valid");
+            }
+        }
+
+        function verifyChecksum() {
+            const digitsOnly = checksumInput.value.replace(/\D/g, "");
+
+            if (!digitsOnly) {
+                checksumInput.focus();
+                return;
+            }
+
+            if (digitsOnly === expectedChecksum) {
+                checksumInput.classList.remove("invalid");
+                checksumInput.disabled = true;
+                checksumButton.disabled = true;
+
+                if (checksumStatus) {
+                    checksumStatus.textContent = "Checksum accepted. Archive integrity confirmed.";
+                    checksumStatus.classList.add("is-valid");
+                }
+
+                if (checksumToken) {
+                    checksumToken.hidden = false;
+                }
+
+                return;
+            }
+
+            checksumInput.classList.add("invalid");
+
+            if (checksumStatus) {
+                checksumStatus.textContent = "Checksum mismatch. Recheck the marked values and sequence.";
+                checksumStatus.classList.remove("is-valid");
+            }
+        }
+
+        checksumButton.addEventListener("click", verifyChecksum);
+
+        checksumInput.addEventListener("keydown", (event) => {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                verifyChecksum();
+            }
+        });
+
+        checksumInput.addEventListener("input", clearChecksumError);
+    }
+
     document.querySelectorAll("[data-message-modal]").forEach((link) => {
         link.addEventListener("click", (event) => {
             event.preventDefault();
