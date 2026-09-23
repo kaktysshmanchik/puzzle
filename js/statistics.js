@@ -44,9 +44,28 @@
         });
     });
 
-    document.querySelectorAll("[data-message-placeholder]").forEach((link) => {
+    document.querySelectorAll("[data-message-modal]").forEach((link) => {
         link.addEventListener("click", (event) => {
             event.preventDefault();
+
+            const modal = document.getElementById(link.dataset.messageModal);
+            if (modal && typeof modal.showModal === "function") {
+                modal.showModal();
+            }
+        });
+    });
+
+    document.querySelectorAll(".stat-message-modal").forEach((modal) => {
+        const closeButton = modal.querySelector("[data-close-modal]");
+
+        if (closeButton) {
+            closeButton.addEventListener("click", () => modal.close());
+        }
+
+        modal.addEventListener("click", (event) => {
+            if (event.target === modal) {
+                modal.close();
+            }
         });
     });
 })();
