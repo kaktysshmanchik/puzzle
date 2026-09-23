@@ -2,7 +2,7 @@
     const game = document.querySelector("[data-latency-game]");
     if (!game) return;
 
-    const PASSCODE = "LX181xIZ1wX2SWtGNSgQnDufhdB";
+    const PASSCODE = "iYBa2504ieTVfsfOtPVk0eyRRV0";
     const rounds = [
         { speed: 56, targetWidth: 28 },
         { speed: 72, targetWidth: 22 },
