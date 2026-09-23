@@ -99,7 +99,7 @@
                 <div class="stat-detail" hidden>
                     <p>5 August, 12:10 PM — 12,549 text characters.</p>
                     <!-- [UPDATE] Replace placeholder href when the full Kathy message page exists. -->
-                    <a class="stat-message-link" href="#" data-message-placeholder>Read Kathy’s longest message →</a>
+                    <a class="stat-message-link" href="#" data-message-modal="kathy-long-message">Read Kathy’s longest message →</a>
                 </div>
             </article>
 
@@ -112,7 +112,7 @@
                 <div class="stat-detail" hidden>
                     <p>17 June, 3:58 PM — 17,925 text characters.</p>
                     <!-- [UPDATE] Replace placeholder href when the full Jonathan message page exists. -->
-                    <a class="stat-message-link" href="#" data-message-placeholder>Read Jonathan’s longest message →</a>
+                    <a class="stat-message-link" href="#" data-message-modal="jonathan-long-message">Read Jonathan’s longest message →</a>
                 </div>
             </article>
 
@@ -239,16 +239,16 @@
                         </article>
                         <article class="vm-highlight-card">
                             <h4>Second longest VM — Jonathan</h4>
-                            <strong>22:02</strong>
-                            <img src="assets/images/stats/he2202.png" alt="Jonathan's 22 minute 2 second voice message" loading="lazy">
+                            <strong>20:00 + 2:01</strong>
+                            <img src="assets/images/stats/he2202.png" alt="Jonathan voice message split into 20 minutes and 2 minutes 1 second" loading="lazy">
                         </article>
                     </div>
 
                     <p class="stat-subheading">Notable mentions</p>
                     <div class="vm-highlights vm-highlights-notable">
                         <article class="vm-highlight-card">
-                            <strong>19:57.305</strong>
-                            <img src="assets/images/stats/he1957.305.png" alt="Jonathan voice message lasting 19 minutes 57.305 seconds" loading="lazy">
+                            <strong>19:57 + 3:05</strong>
+                            <img src="assets/images/stats/he1957.305.png" alt="Jonathan voice message split into 19 minutes 57 seconds and 3 minutes 5 seconds" loading="lazy">
                         </article>
                         <article class="vm-highlight-card">
                             <strong>20:02</strong>
@@ -299,6 +299,31 @@
         </div>
     </section>
 </main>
+
+
+<dialog class="stat-message-modal" id="kathy-long-message" aria-labelledby="kathy-long-message-title">
+    <div class="stat-message-modal-shell">
+        <div class="stat-message-modal-header">
+            <h2 id="kathy-long-message-title">Kathy’s longest Reddit message</h2>
+            <button class="stat-message-modal-close" type="button" data-close-modal aria-label="Close">×</button>
+        </div>
+        <div class="stat-message-modal-body">
+            <!-- [UPDATE] Add Kathy's longest Reddit message here. -->
+        </div>
+    </div>
+</dialog>
+
+<dialog class="stat-message-modal" id="jonathan-long-message" aria-labelledby="jonathan-long-message-title">
+    <div class="stat-message-modal-shell">
+        <div class="stat-message-modal-header">
+            <h2 id="jonathan-long-message-title">Jonathan’s longest Reddit message</h2>
+            <button class="stat-message-modal-close" type="button" data-close-modal aria-label="Close">×</button>
+        </div>
+        <div class="stat-message-modal-body">
+            <!-- [UPDATE] Add Jonathan's longest Reddit message here. -->
+        </div>
+    </div>
+</dialog>
 
 <script src="js/statistics.js"></script>
 </body>
