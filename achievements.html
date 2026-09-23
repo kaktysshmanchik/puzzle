@@ -288,6 +288,71 @@
                 </article>
             </div>
         </section>
+
+        <section class="latency-section" data-latency-game tabindex="0" aria-labelledby="latency-title">
+            <div class="latency-heading">
+                <div>
+                    <p class="achievements-kicker">Bonus objective</p>
+                    <h2 id="latency-title">MULTIPLAYER CONNECTION TEST</h2>
+                </div>
+                <span class="latency-status-pill" data-connection-pill>UNCALIBRATED</span>
+            </div>
+
+            <div class="latency-console">
+                <div class="latency-players" aria-label="Connected players">
+                    <div class="latency-player">
+                        <span>PLAYER 1</span>
+                        <strong>JONATHAN</strong>
+                        <em>CONNECTED</em>
+                    </div>
+                    <div class="latency-link" aria-hidden="true">························</div>
+                    <div class="latency-player latency-player-right">
+                        <span>PLAYER 2</span>
+                        <strong>KATHY</strong>
+                        <em>CONNECTED</em>
+                    </div>
+                </div>
+
+                <dl class="latency-diagnostics">
+                    <div><dt>PING</dt><dd data-ping>ABSURD</dd></div>
+                    <div><dt>PACKET LOSS</dt><dd data-packet-loss>EMOTIONAL</dd></div>
+                    <div><dt>VOICE CHANNEL</dt><dd>ACTIVE</dd></div>
+                    <div><dt>SHARED SAVE</dt><dd data-shared-save>SEARCHING...</dd></div>
+                    <div><dt>LOCAL MULTIPLAYER</dt><dd data-local-multiplayer>LOCKED</dd></div>
+                    <div><dt>CONNECTION</dt><dd data-connection-status>WAITING FOR CALIBRATION</dd></div>
+                </dl>
+
+                <div class="latency-calibration">
+                    <div class="latency-calibration-header">
+                        <span>SIGNAL SYNC</span>
+                        <strong data-sync-progress>0%</strong>
+                    </div>
+
+                    <div class="latency-track" data-latency-track aria-hidden="true">
+                        <div class="latency-target" data-latency-target><span>PERFECT</span></div>
+                        <div class="latency-marker" data-latency-marker></div>
+                    </div>
+
+                    <p class="latency-message" data-latency-message role="status" aria-live="polite">
+                        Calibrate the connection. Three clean signal locks required.
+                    </p>
+
+                    <button type="button" class="latency-button" data-latency-button>
+                        CALIBRATE CONNECTION
+                    </button>
+
+                    <p class="latency-hint">Click the button — or focus this panel and press Space — when the marker crosses the target.</p>
+                </div>
+
+                <div class="latency-token" data-latency-token hidden>
+                    <span>AUTHENTICATION TOKEN // PATCH NOTES</span>
+                    <strong data-latency-passcode></strong>
+                    <small>Connection stable. Try not to get smug about it.</small>
+                </div>
+            </div>
+        </section>
+
 </main>
+    <script src="js/achievements.js"></script>
 </body>
 </html>
