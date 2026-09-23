@@ -39,20 +39,28 @@
                 </div>
             </article>
 
-            <article class="stat-question" data-stat-question data-answer="158011" data-display-answer="158,011">
+            <article class="stat-question stat-question-wide" data-stat-question data-answer="158011" data-display-answer="158,011 words">
                 <h3>How many words are in the Reddit messages altogether?</h3>
                 <div class="stat-guess-row">
                     <input class="stat-guess-input" type="text" inputmode="numeric" autocomplete="off" placeholder="Your guess">
                     <button class="stat-verify-button" type="button">Verify</button>
                 </div>
+                <div class="stat-detail stat-fact-stack" hidden>
+                    <p><strong>That is basically The Lord of the Rings: The Two Towers.</strong> A commonly cited word count for <em>The Two Towers</em> is 156,198.</p>
+                    <p><strong>1.66 Hobbits.</strong> <em>The Hobbit</em> is listed at 95,022 words.</p>
+                    <p>158,011 words is roughly <strong>632 standard manuscript pages</strong>, using the usual rough estimate of 250 words per page.</p>
+                    <p>If you printed the Reddit conversation single-sided, you’d have a manuscript over <strong>6 cm thick</strong> on ordinary ~0.1 mm office paper. Double-sided: about <strong>316 sheets / 3.2 cm</strong>.</p>
+                    <p>At 250 words per minute, reading the entire Reddit archive straight through would take about <strong>10 hours 32 minutes</strong>. At a slower audiobook-ish 150 words/minute, speaking the whole thing aloud would take about <strong>17 hours 33 minutes</strong>.</p>
+                </div>
             </article>
 
-            <article class="stat-question" data-stat-question data-answer="4020" data-display-answer="4,020">
+            <article class="stat-question" data-stat-question data-answer="4020" data-display-answer="4,020 characters">
                 <h3>What was the average number of characters per Reddit message?</h3>
                 <div class="stat-guess-row">
                     <input class="stat-guess-input" type="text" inputmode="numeric" autocomplete="off" placeholder="Your guess">
                     <button class="stat-verify-button" type="button">Verify</button>
                 </div>
+                <p class="stat-detail" hidden>Your average Reddit message is <strong>745 words</strong>. That’s roughly three manuscript pages per message. So “sending a message” was frequently “submit chapter draft.”</p>
             </article>
 
             <article class="stat-question" data-stat-question data-answer="81" data-display-answer="81">
@@ -61,6 +69,7 @@
                     <input class="stat-guess-input" type="text" inputmode="numeric" autocomplete="off" placeholder="Your guess">
                     <button class="stat-verify-button" type="button">Verify</button>
                 </div>
+                <p class="stat-detail" hidden>5,000 characters is roughly <strong>930 words</strong>. That means those 81 messages were each roughly a short essay or about four manuscript pages. That’s <strong>38%</strong> of every Reddit message you sent.</p>
             </article>
 
             <article class="stat-question" data-stat-question data-answer="16" data-display-answer="16">
@@ -69,15 +78,16 @@
                     <input class="stat-guess-input" type="text" inputmode="numeric" autocomplete="off" placeholder="Your guess">
                     <button class="stat-verify-button" type="button">Verify</button>
                 </div>
+                <p class="stat-detail" hidden>10,000 characters is roughly <strong>1,850 words</strong>. Your 16 messages above that mark were each around 7–8 manuscript pages. That’s <strong>7.5%</strong> of the entire conversation.</p>
             </article>
 
-            <article class="stat-question" data-stat-question data-answer="9567" data-display-answer="9,567 words">
+            <article class="stat-question stat-question-wide" data-stat-question data-answer="9567" data-display-answer="9,567 words">
                 <h3>On the wall-of-text championship day — 17 June — how many words did you two produce?</h3>
                 <div class="stat-guess-row">
                     <input class="stat-guess-input" type="text" inputmode="numeric" autocomplete="off" placeholder="Your guess">
                     <button class="stat-verify-button" type="button">Verify</button>
                 </div>
-                <p class="stat-detail" hidden>17 June wins the Reddit wall-of-text championship.</p>
+                <p class="stat-detail" hidden>9,567 words would be about <strong>38 manuscript pages</strong>. Read aloud at 150 words/minute, that single day’s Reddit output would take roughly <strong>1 hour 4 minutes</strong>. One fucking day.</p>
             </article>
 
             <article class="stat-question" data-stat-question data-answer="2299" data-display-answer="2,299 words">
@@ -86,7 +96,11 @@
                     <input class="stat-guess-input" type="text" inputmode="numeric" autocomplete="off" placeholder="Your guess">
                     <button class="stat-verify-button" type="button">Verify</button>
                 </div>
-                <p class="stat-detail" hidden>5 August, 12:10 PM — 12,549 text characters.</p>
+                <div class="stat-detail" hidden>
+                    <p>5 August, 12:10 PM — 12,549 text characters.</p>
+                    <!-- [UPDATE] Replace placeholder href when the full Kathy message page exists. -->
+                    <a class="stat-message-link" href="#" data-message-placeholder>Read Kathy’s longest message →</a>
+                </div>
             </article>
 
             <article class="stat-question" data-stat-question data-answer="3325" data-display-answer="3,325 words">
@@ -95,7 +109,11 @@
                     <input class="stat-guess-input" type="text" inputmode="numeric" autocomplete="off" placeholder="Your guess">
                     <button class="stat-verify-button" type="button">Verify</button>
                 </div>
-                <p class="stat-detail" hidden>17 June, 3:58 PM — 17,925 text characters.</p>
+                <div class="stat-detail" hidden>
+                    <p>17 June, 3:58 PM — 17,925 text characters.</p>
+                    <!-- [UPDATE] Replace placeholder href when the full Jonathan message page exists. -->
+                    <a class="stat-message-link" href="#" data-message-placeholder>Read Jonathan’s longest message →</a>
+                </div>
             </article>
 
             <article class="stat-question stat-question-wide" data-stat-question data-answer="1559" data-display-answer="1,559 questions">
@@ -121,63 +139,76 @@
             <span>Reddit</span>
         </div>
 
-        <div class="word-stat-grid">
-            <article class="word-stat-panel">
-                <h3>Most-used words</h3>
-                <div class="stat-table-wrap">
-                    <table class="stat-table">
-                        <thead>
-                            <tr>
-                                <th>Kaktysshmanchik</th>
-                                <th>Count</th>
-                                <th>jsammons90</th>
-                                <th>Count</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr><td>people</td><td>345</td><td>people</td><td>426</td></tr>
-                            <tr><td>sure</td><td>154</td><td>stuff</td><td>241</td></tr>
-                            <tr><td>great</td><td>117</td><td>remember</td><td>189</td></tr>
-                            <tr><td>remember</td><td>109</td><td>feel</td><td>169</td></tr>
-                            <tr><td>work</td><td>107</td><td>pretty</td><td>164</td></tr>
-                            <tr><td>sounds</td><td>93</td><td>definitely</td><td>154</td></tr>
-                            <tr><td>stuff</td><td>92</td><td>good</td><td>147</td></tr>
-                            <tr><td>good</td><td>91</td><td>kids</td><td>116</td></tr>
-                            <tr><td>someone</td><td>90</td><td>right</td><td>115</td></tr>
-                            <tr><td>usually</td><td>90</td><td>always</td><td>108</td></tr>
-                            <tr><td>maybe</td><td>89</td><td>probably</td><td>108</td></tr>
-                        </tbody>
-                    </table>
+        <div class="stat-question-list">
+            <article class="stat-question stat-question-wide" data-stat-question data-answer="people" data-display-answer="people">
+                <h3>What was the most-used word for both of you on Reddit?</h3>
+                <div class="stat-guess-row">
+                    <input class="stat-guess-input" type="text" autocomplete="off" placeholder="Your guess">
+                    <button class="stat-verify-button" type="button">Verify</button>
                 </div>
-            </article>
+                <div class="stat-detail stat-word-detail" hidden>
+                    <p>Yep. <strong>People.</strong> Kathy used it 345 times; Jonathan used it 426 times. Apparently the real recurring character was humanity.</p>
 
-            <article class="word-stat-panel">
-                <h3>Repeated phrases</h3>
-                <div class="stat-table-wrap">
-                    <table class="stat-table">
-                        <thead>
-                            <tr>
-                                <th>Kaktysshmanchik</th>
-                                <th>Count</th>
-                                <th>jsammons90</th>
-                                <th>Count</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr><td>“I don't”</td><td>295</td><td>“I think”</td><td>335</td></tr>
-                            <tr><td>“a lot”</td><td>124</td><td>“a lot”</td><td>188</td></tr>
-                            <tr><td>“I think”</td><td>118</td><td>“like that”</td><td>186</td></tr>
-                            <tr><td>“yeah I”</td><td>116</td><td>“I don't”</td><td>174</td></tr>
-                            <tr><td>“don't know”</td><td>104</td><td>“and stuff”</td><td>130</td></tr>
-                            <tr><td>“I'm not”</td><td>93</td><td>“I know”</td><td>110</td></tr>
-                            <tr><td>“I can't”</td><td>75</td><td>“a bit”</td><td>106</td></tr>
-                            <tr><td>“not sure”</td><td>63</td><td>“I remember”</td><td>95</td></tr>
-                            <tr><td>“I guess”</td><td>62</td><td>“trying to”</td><td>94</td></tr>
-                            <tr><td>“don't think”</td><td>61</td><td>“oh yeah”</td><td>82</td></tr>
-                            <tr><td>“kind of”</td><td>57</td><td>“I feel”</td><td>81</td></tr>
-                            <tr><td>“at least”</td><td>57</td><td>“or something”</td><td>81</td></tr>
-                        </tbody>
-                    </table>
+                    <div class="word-stat-grid">
+                        <article class="word-stat-panel">
+                            <h3>Most-used words</h3>
+                            <div class="stat-table-wrap">
+                                <table class="stat-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Kaktysshmanchik</th>
+                                            <th>Count</th>
+                                            <th>jsammons90</th>
+                                            <th>Count</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr><td>people</td><td>345</td><td>people</td><td>426</td></tr>
+                                        <tr><td>sure</td><td>154</td><td>stuff</td><td>241</td></tr>
+                                        <tr><td>great</td><td>117</td><td>remember</td><td>189</td></tr>
+                                        <tr><td>remember</td><td>109</td><td>feel</td><td>169</td></tr>
+                                        <tr><td>work</td><td>107</td><td>pretty</td><td>164</td></tr>
+                                        <tr><td>sounds</td><td>93</td><td>definitely</td><td>154</td></tr>
+                                        <tr><td>stuff</td><td>92</td><td>good</td><td>147</td></tr>
+                                        <tr><td>good</td><td>91</td><td>kids</td><td>116</td></tr>
+                                        <tr><td>someone</td><td>90</td><td>right</td><td>115</td></tr>
+                                        <tr><td>usually</td><td>90</td><td>always</td><td>108</td></tr>
+                                        <tr><td>maybe</td><td>89</td><td>probably</td><td>108</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </article>
+
+                        <article class="word-stat-panel">
+                            <h3>Repeated phrases</h3>
+                            <div class="stat-table-wrap">
+                                <table class="stat-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Kaktysshmanchik</th>
+                                            <th>Count</th>
+                                            <th>jsammons90</th>
+                                            <th>Count</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr><td>“I don't”</td><td>295</td><td>“I think”</td><td>335</td></tr>
+                                        <tr><td>“a lot”</td><td>124</td><td>“a lot”</td><td>188</td></tr>
+                                        <tr><td>“I think”</td><td>118</td><td>“like that”</td><td>186</td></tr>
+                                        <tr><td>“yeah I”</td><td>116</td><td>“I don't”</td><td>174</td></tr>
+                                        <tr><td>“don't know”</td><td>104</td><td>“and stuff”</td><td>130</td></tr>
+                                        <tr><td>“I'm not”</td><td>93</td><td>“I know”</td><td>110</td></tr>
+                                        <tr><td>“I can't”</td><td>75</td><td>“a bit”</td><td>106</td></tr>
+                                        <tr><td>“not sure”</td><td>63</td><td>“I remember”</td><td>95</td></tr>
+                                        <tr><td>“I guess”</td><td>62</td><td>“trying to”</td><td>94</td></tr>
+                                        <tr><td>“don't think”</td><td>61</td><td>“oh yeah”</td><td>82</td></tr>
+                                        <tr><td>“kind of”</td><td>57</td><td>“I feel”</td><td>81</td></tr>
+                                        <tr><td>“at least”</td><td>57</td><td>“or something”</td><td>81</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </article>
+                    </div>
                 </div>
             </article>
         </div>
@@ -190,11 +221,53 @@
         </div>
 
         <div class="stat-question-list">
-            <article class="stat-question" data-stat-question data-answer="514" data-display-answer="514">
+            <article class="stat-question stat-question-wide" data-stat-question data-answer="604" data-display-answer="604 voice messages">
                 <h3>How many voice messages had you exchanged on Discord by 22.09.2026?</h3>
                 <div class="stat-guess-row">
                     <input class="stat-guess-input" type="text" inputmode="numeric" autocomplete="off" placeholder="Your guess">
                     <button class="stat-verify-button" type="button">Verify</button>
+                </div>
+                <div class="stat-detail stat-fact-stack" hidden>
+                    <p>Total length: <strong>39 hours, 49 minutes, 2 seconds.</strong> It is only <strong>10 minutes, 58 seconds</strong> short of a full 40-hour workweek.</p>
+                    <p>Average voice message: <strong>3:57</strong>.</p>
+
+                    <div class="vm-highlights">
+                        <article class="vm-highlight-card">
+                            <h4>Longest VM — Kathy</h4>
+                            <strong>20:38 + 6:53</strong>
+                            <img src="assets/images/stats/kathy_long_vm.png" alt="Kathy's longest voice message" loading="lazy">
+                        </article>
+                        <article class="vm-highlight-card">
+                            <h4>Second longest VM — Jonathan</h4>
+                            <strong>22:02</strong>
+                            <img src="assets/images/stats/he2202.png" alt="Jonathan's 22 minute 2 second voice message" loading="lazy">
+                        </article>
+                    </div>
+
+                    <p class="stat-subheading">Notable mentions</p>
+                    <div class="vm-highlights vm-highlights-notable">
+                        <article class="vm-highlight-card">
+                            <strong>19:57.305</strong>
+                            <img src="assets/images/stats/he1957.305.png" alt="Jonathan voice message lasting 19 minutes 57.305 seconds" loading="lazy">
+                        </article>
+                        <article class="vm-highlight-card">
+                            <strong>20:02</strong>
+                            <img src="assets/images/stats/he2002.png" alt="Jonathan voice message lasting 20 minutes 2 seconds" loading="lazy">
+                        </article>
+                    </div>
+                </div>
+            </article>
+
+            <article class="stat-question stat-question-wide" data-stat-question data-answer="6869" data-display-answer="6,869 messages">
+                <h3>How many Discord text messages had you sent in total by 22.09.2026?</h3>
+                <div class="stat-guess-row">
+                    <input class="stat-guess-input" type="text" inputmode="numeric" autocomplete="off" placeholder="Your guess">
+                    <button class="stat-verify-button" type="button">Verify</button>
+                </div>
+                <div class="stat-detail stat-message-split" hidden>
+                    <p><strong>Jonathan:</strong> 3,508 — 51.07%</p>
+                    <p><strong>Kathy:</strong> 3,361 — 48.93%</p>
+                    <p><strong>Difference:</strong> 147 messages.</p>
                 </div>
             </article>
         </div>
@@ -207,15 +280,16 @@
         </div>
 
         <div class="stat-question-list">
-            <article class="stat-question" data-stat-question data-answer="587" data-display-answer="587">
+            <article class="stat-question stat-question-wide" data-stat-question data-answer="587" data-display-answer="587 pictures">
                 <h3>How many pictures had you shared in total?</h3>
                 <div class="stat-guess-row">
                     <input class="stat-guess-input" type="text" inputmode="numeric" autocomplete="off" placeholder="Your guess">
                     <button class="stat-verify-button" type="button">Verify</button>
                 </div>
+                <p class="stat-detail" hidden>Printed as 4×6 photos, they’d cover about <strong>9 m²</strong>, stretch nearly <strong>90 metres</strong> end-to-end, or form a stack roughly <strong>15 cm tall</strong>.</p>
             </article>
 
-            <article class="stat-question" data-stat-question data-answer="62" data-display-answer="62">
+            <article class="stat-question stat-question-wide" data-stat-question data-answer="62" data-display-answer="62 pictures">
                 <h3>In how many shared pictures is either of you visible — face included?</h3>
                 <div class="stat-guess-row">
                     <input class="stat-guess-input" type="text" inputmode="numeric" autocomplete="off" placeholder="Your guess">
