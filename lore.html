@@ -9,6 +9,27 @@
 <body>
 <main class="page">
     <h1>The lore</h1>
+
+    <section class="scrabble-word-puzzle" aria-labelledby="scrabble-word-lock-title">
+        <h2 id="scrabble-word-lock-title">WORD LOCK</h2>
+        <p>Five slots. Arrange collected tiles until the lock accepts the word.</p>
+
+        <div class="scrabble-word-grid" data-scrabble-grid aria-label="Five letter word grid">
+            <div class="scrabble-word-slot" data-scrabble-slot="0" data-slot-number="1"></div>
+            <div class="scrabble-word-slot" data-scrabble-slot="1" data-slot-number="2"></div>
+            <div class="scrabble-word-slot" data-scrabble-slot="2" data-slot-number="3"></div>
+            <div class="scrabble-word-slot" data-scrabble-slot="3" data-slot-number="4"></div>
+            <div class="scrabble-word-slot" data-scrabble-slot="4" data-slot-number="5"></div>
+        </div>
+
+        <div class="scrabble-reward" data-scrabble-reward hidden>
+            <span>PLAYER TWO NOTES // PASSCODE</span>
+            <strong data-scrabble-passcode></strong>
+            <small>Word lock accepted.</small>
+        </div>
+    </section>
+
 </main>
+<script src="js/scrabble.js"></script>
 </body>
 </html>
