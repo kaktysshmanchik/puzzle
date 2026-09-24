@@ -1993,68 +1993,43 @@ h1 {
     right: 18px;
     bottom: 18px;
     z-index: 9000;
-    display: grid;
-    grid-template-columns: 28px auto;
-    grid-template-rows: auto auto;
-    align-items: center;
-    column-gap: 8px;
-    min-width: 88px;
-    min-height: 58px;
-    padding: 9px 11px;
-    border: 1px solid #655a4e;
-    background: rgba(29, 26, 24, 0.96);
-    color: #e8ddd0;
-    box-shadow: 0 10px 28px rgba(0,0,0,0.36);
+    width: 74px;
+    height: 74px;
+    padding: 0;
+    border: 0;
+    background: transparent;
     cursor: pointer;
-    backdrop-filter: blur(5px);
+    filter: drop-shadow(0 8px 12px rgba(0,0,0,0.42));
 }
 
-.scrabble-inventory-button:hover,
+.scrabble-inventory-button img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    pointer-events: none;
+    transition: transform 140ms ease, filter 140ms ease;
+}
+
+.scrabble-inventory-button:hover img,
+.scrabble-inventory-button:focus-visible img {
+    transform: scale(1.06);
+    filter: brightness(1.08);
+}
+
 .scrabble-inventory-button:focus-visible {
-    outline: none;
-    border-color: #aa9b8a;
-    background: rgba(38, 33, 29, 0.98);
+    outline: 1px solid #aa9b8a;
+    outline-offset: 3px;
 }
 
 .scrabble-inventory-button.is-receiving {
     animation: scrabble-inventory-pulse 520ms ease;
 }
 
-.scrabble-inventory-icon {
-    position: relative;
-    grid-row: 1 / span 2;
-    display: grid;
-    grid-template-columns: repeat(2, 9px);
-    grid-template-rows: repeat(2, 9px);
-    gap: 2px;
-    width: 20px;
-    height: 20px;
-}
-
-.scrabble-inventory-icon span {
-    display: block;
-    border: 1px solid #b9a37d;
-    background: #d8bd8a;
-    box-shadow: inset 0 0 0 1px rgba(75,53,31,0.16);
-}
-
-.scrabble-inventory-label {
-    align-self: end;
-    font: 700 9px/1 "Courier New", Courier, monospace;
-    letter-spacing: 0.16em;
-    color: #9e948a;
-}
-
-.scrabble-inventory-badge {
-    align-self: start;
-    font: 700 16px/1 Georgia, serif;
-    color: #f0e4d6;
-}
-
 .scrabble-inventory-panel {
     position: fixed;
     right: 18px;
-    bottom: 86px;
+    bottom: 102px;
     z-index: 8999;
     width: min(390px, calc(100vw - 36px));
     max-height: min(520px, calc(100vh - 120px));
@@ -2070,6 +2045,13 @@ h1 {
 }
 
 .scrabble-inventory-panel[hidden] {
+    display: none !important;
+}
+
+.scrabble-inventory-heading[hidden],
+.scrabble-inventory-note[hidden],
+.scrabble-inventory-list[hidden],
+.scrabble-inventory-empty[hidden] {
     display: none !important;
 }
 
@@ -2325,7 +2307,7 @@ h1 {
 
     .scrabble-inventory-panel {
         right: 12px;
-        bottom: 78px;
+        bottom: 94px;
         width: calc(100vw - 24px);
     }
 
