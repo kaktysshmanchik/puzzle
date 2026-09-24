@@ -11,9 +11,24 @@
 <main class="page">
     <h1>The lore</h1>
 
-    <section class="scrabble-word-puzzle" aria-labelledby="scrabble-word-lock-title">
-        <h2 id="scrabble-word-lock-title">WORD LOCK</h2>
-        <p>Five slots. Arrange collected tiles until the lock accepts the word.</p>
+    <section class="lore-message-puzzle" data-message-rebuild aria-label="Message reconstruction">
+        <p class="lore-puzzle-quote">A long time ago in a galaxy far, far away...</p>
+
+        <div class="message-rebuild-board">
+            <div class="message-piece-pile" data-message-pile aria-label="Shuffled message fragments"></div>
+
+            <div class="message-envelope" data-message-envelope hidden aria-label="Completed message reward">
+                <div class="envelope-body"></div>
+                <div class="envelope-card">[UPDATE]</div>
+                <button class="envelope-flap" data-envelope-flap type="button" aria-label="Pull open envelope flap"></button>
+            </div>
+
+            <div class="message-order-grid" data-message-grid aria-label="Message reconstruction slots"></div>
+        </div>
+    </section>
+
+    <section class="scrabble-word-puzzle" aria-label="Word lock">
+        <p class="lore-puzzle-quote">Where words are spent, they are seldom spent in vain.</p>
 
         <div class="scrabble-word-grid" data-scrabble-grid aria-label="Five letter word grid">
             <div class="scrabble-word-slot" data-scrabble-slot="0" data-slot-number="1"></div>
@@ -27,23 +42,6 @@
             <span>PLAYER TWO NOTES // PASSCODE</span>
             <strong data-scrabble-passcode></strong>
             <small>Word lock accepted.</small>
-        </div>
-    </section>
-
-    <section class="lore-message-puzzle" data-message-rebuild aria-labelledby="message-rebuild-title">
-        <h2 id="message-rebuild-title">MESSAGE RECONSTRUCTION</h2>
-        <p>Put the fragments back where they belong.</p>
-
-        <div class="message-rebuild-board">
-            <div class="message-piece-pile" data-message-pile aria-label="Shuffled message fragments"></div>
-
-            <div class="message-envelope" data-message-envelope hidden aria-label="Completed message reward">
-                <div class="envelope-body"></div>
-                <div class="envelope-card">[UPDATE]</div>
-                <button class="envelope-flap" data-envelope-flap type="button" aria-label="Pull open envelope flap"></button>
-            </div>
-
-            <div class="message-order-grid" data-message-grid aria-label="Message reconstruction slots"></div>
         </div>
     </section>
 
