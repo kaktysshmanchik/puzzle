@@ -81,7 +81,7 @@ h1 {
 .passcode-control {
     position: relative;
     display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-columns: minmax(0, 1fr) auto auto;
     gap: 10px;
 }
 
@@ -116,7 +116,8 @@ h1 {
     box-shadow: 0 0 0 1px var(--error);
 }
 
-.verify-button {
+.verify-button,
+.dev-unlock-button {
     padding: 10px 18px;
 
     border: 1px solid var(--border);
@@ -130,11 +131,19 @@ h1 {
     cursor: pointer;
 }
 
-.verify-button:hover {
+.verify-button:hover,
+.dev-unlock-button:hover {
     border-color: var(--text);
 }
 
+.dev-unlock-button {
+    border-color: #6b645a;
+    color: #a79d91;
+    font-size: 13px;
+}
+
 .verify-button:disabled,
+.dev-unlock-button:disabled,
 .passcode-input:disabled {
     opacity: 0.45;
     cursor: default;
