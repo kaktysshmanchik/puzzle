@@ -14,7 +14,7 @@
         "statistics-p": { id: "statistics-p", letter: "P", value: 3, page: "notable-incidents.html", mode: "peek", target: "statistics", answer: "604", side: "right", rotate: -6 },
         "statistics-r": { id: "statistics-r", letter: "R", value: 1, page: "notable-incidents.html", mode: "scatter", x: 8, y: 67, rotate: 8 },
         "lore-y": { id: "lore-y", letter: "Y", value: 1, page: "lore.html", mode: "scatter", x: 10, y: 24, rotate: -8 },
-        "lore-p": { id: "lore-p", letter: "P", value: 3, page: "lore.html", mode: "scatter", x: 86, y: 49, rotate: 7 },
+        "lore-r": { id: "lore-r", letter: "R", value: 1, page: "lore.html", mode: "scatter", x: 86, y: 49, rotate: 7 },
         "lore-t": { id: "lore-t", letter: "T", value: 1, page: "lore.html", mode: "scatter", x: 22, y: 72, rotate: -4 }
     };
 
@@ -44,7 +44,7 @@
             const rawFound = Array.isArray(parsed.foundOrder) ? parsed.foundOrder : [];
             const foundOrder = [];
             rawFound.forEach(function (rawId) {
-                const id = rawId === "lore-r" ? "lore-p" : rawId;
+                const id = rawId === "lore-p" ? "lore-r" : rawId;
                 if (TILE_DEFS[id] && !foundOrder.includes(id)) {
                     foundOrder.push(id);
                 }
@@ -54,10 +54,10 @@
                 ? Object.assign({}, parsed.placements)
                 : {};
 
-            if (placements["lore-r"] && !placements["lore-p"]) {
-                placements["lore-p"] = placements["lore-r"];
+            if (placements["lore-p"] && !placements["lore-r"]) {
+                placements["lore-r"] = placements["lore-p"];
             }
-            delete placements["lore-r"];
+            delete placements["lore-p"];
 
             return {
                 foundOrder: foundOrder,
@@ -117,11 +117,6 @@
         inventoryPanel.className = "scrabble-inventory-panel";
         inventoryPanel.hidden = true;
         inventoryPanel.innerHTML =
-            '<div class="scrabble-inventory-heading">' +
-                '<div><span>INVENTORY</span><strong>Letter tiles</strong></div>' +
-                '<button type="button" class="scrabble-inventory-close" aria-label="Close inventory">×</button>' +
-            '</div>' +
-            '<p class="scrabble-inventory-note">Collected tiles stay here in discovery order. Drag any tile out.</p>' +
             '<div class="scrabble-inventory-list" data-scrabble-inventory-list></div>' +
             '<p class="scrabble-inventory-empty" data-scrabble-empty>Nothing found yet.</p>';
 
@@ -132,10 +127,6 @@
 
         inventoryButton.addEventListener("click", function () {
             setInventoryOpen(inventoryPanel.hidden);
-        });
-
-        inventoryPanel.querySelector(".scrabble-inventory-close").addEventListener("click", function () {
-            setInventoryOpen(false);
         });
 
         document.addEventListener("keydown", function (event) {
@@ -183,12 +174,8 @@
 
         const hasTiles = state.foundOrder.length !== 0;
         const empty = inventoryPanel.querySelector("[data-scrabble-empty]");
-        const heading = inventoryPanel.querySelector(".scrabble-inventory-heading");
-        const note = inventoryPanel.querySelector(".scrabble-inventory-note");
 
         empty.hidden = hasTiles;
-        heading.hidden = !hasTiles;
-        note.hidden = !hasTiles;
         inventoryList.hidden = !hasTiles;
     }
 
