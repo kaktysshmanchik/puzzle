@@ -1,0 +1,200 @@
+/* Lore message reconstruction puzzle */
+.lore-message-puzzle {
+    margin-top: 48px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+}
+
+.lore-message-puzzle h2 {
+    margin: 0 0 8px;
+    text-align: center;
+    letter-spacing: .08em;
+}
+
+.lore-message-puzzle > p {
+    margin: 0 0 28px;
+    text-align: center;
+    color: var(--muted);
+}
+
+.message-rebuild-board {
+    display: grid;
+    grid-template-columns: minmax(260px, 1fr) minmax(340px, 1.15fr);
+    gap: 42px;
+    align-items: start;
+}
+
+.message-piece-pile {
+    position: sticky;
+    top: 24px;
+    min-height: 520px;
+    border: 1px dashed #5b534b;
+    background: rgba(255,255,255,.018);
+}
+
+.message-piece {
+    display: block;
+    width: min(92%, 390px);
+    height: auto;
+    border: 1px solid rgba(232,223,207,.2);
+    box-shadow: 0 7px 18px rgba(0,0,0,.42);
+    background: #eee;
+    cursor: grab;
+    user-select: none;
+    touch-action: none;
+}
+
+.message-piece:active { cursor: grabbing; }
+
+.message-piece-pile .message-piece {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) translate(var(--pile-x), var(--pile-y)) rotate(var(--pile-r));
+}
+
+.message-piece.is-dragging {
+    position: fixed !important;
+    z-index: 10000;
+    width: var(--drag-width) !important;
+    max-height: 75vh;
+    object-fit: contain;
+    left: 0 !important;
+    top: 0 !important;
+    margin: 0 !important;
+    transform: translate(var(--drag-x), var(--drag-y)) !important;
+    pointer-events: none;
+    opacity: .96;
+}
+
+.message-order-grid {
+    display: grid;
+    gap: 8px;
+}
+
+.message-slot-row {
+    display: grid;
+    grid-template-columns: 30px minmax(0, 1fr);
+    gap: 9px;
+    align-items: start;
+}
+
+.message-slot-label {
+    padding-top: 13px;
+    color: #cfc4b4;
+    font: 700 15px/1 "Courier New", Courier, monospace;
+    text-align: right;
+}
+
+.message-slot {
+    min-height: 48px;
+    border: 1px solid #5b534b;
+    background: #211e1b;
+    transition: border-color 120ms ease, background 120ms ease, box-shadow 120ms ease;
+}
+
+.message-slot.is-target {
+    border-color: #d4b43d;
+    background: rgba(212,180,61,.12);
+    box-shadow: 0 0 0 1px rgba(212,180,61,.28);
+}
+
+.message-slot.is-correct {
+    border-color: #315f3a;
+    background: rgba(35,88,48,.22);
+    box-shadow: inset 0 0 0 1px rgba(70,132,82,.22);
+}
+
+.message-slot.is-wrong {
+    border-color: #8e3939;
+    background: rgba(120,39,39,.18);
+}
+
+.message-slot .message-piece {
+    width: 100%;
+    max-width: none;
+    border: 0;
+    box-shadow: none;
+}
+
+.message-slot.is-correct .message-piece { cursor: default; }
+
+.message-envelope {
+    position: sticky;
+    top: 80px;
+    width: min(360px, 92%);
+    aspect-ratio: 1.5 / 1;
+    margin: 110px auto 0;
+    perspective: 900px;
+}
+
+.message-envelope[hidden] { display: none; }
+
+.envelope-body {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    border: 1px solid #846f54;
+    background: #c9ad7b;
+    box-shadow: 0 14px 30px rgba(0,0,0,.38);
+}
+
+.envelope-body::before,
+.envelope-body::after {
+    content: "";
+    position: absolute;
+    bottom: -46%;
+    width: 78%;
+    height: 115%;
+    background: #d4ba88;
+    border: 1px solid rgba(93,68,40,.28);
+}
+.envelope-body::before { left: -30%; transform: rotate(35deg); }
+.envelope-body::after { right: -30%; transform: rotate(-35deg); }
+
+.envelope-card {
+    position: absolute;
+    z-index: 1;
+    left: 8%;
+    right: 8%;
+    bottom: 7%;
+    height: 82%;
+    display: grid;
+    place-items: center;
+    border: 1px solid #8d806d;
+    background: #eee4d2;
+    color: #2b241d;
+    font: 700 22px/1.2 "Courier New", Courier, monospace;
+    box-shadow: 0 3px 12px rgba(0,0,0,.2);
+    transition: transform 700ms cubic-bezier(.2,.8,.2,1);
+}
+
+.message-envelope.is-open .envelope-card { transform: translateY(-76%); }
+
+.envelope-flap {
+    position: absolute;
+    z-index: 3;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 58%;
+    padding: 0;
+    border: 0;
+    background: #b99866;
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+    transform-origin: top;
+    cursor: ns-resize;
+    transition: transform 520ms ease;
+    filter: drop-shadow(0 2px 1px rgba(0,0,0,.2));
+}
+
+.message-envelope.is-open .envelope-flap {
+    transform: rotateX(180deg);
+    pointer-events: none;
+}
+
+@media (max-width: 760px) {
+    .message-rebuild-board { grid-template-columns: 1fr; }
+    .message-piece-pile { position: relative; top: auto; min-height: 440px; }
+    .message-envelope { position: relative; top: auto; margin-top: 70px; }
+}
