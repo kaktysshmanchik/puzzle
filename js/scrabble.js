@@ -14,7 +14,7 @@
         "statistics-p": { id: "statistics-p", letter: "P", value: 3, page: "notable-incidents.html", mode: "peek", target: "statistics", answer: "604", side: "right", rotate: -6 },
         "statistics-r": { id: "statistics-r", letter: "R", value: 1, page: "notable-incidents.html", mode: "scatter", x: 8, y: 67, rotate: 8 },
         "lore-y": { id: "lore-y", letter: "Y", value: 1, page: "lore.html", mode: "scatter", x: 10, y: 24, rotate: -8 },
-        "lore-r": { id: "lore-r", letter: "R", value: 1, page: "lore.html", mode: "scatter", x: 86, y: 49, rotate: 7 },
+        "lore-p": { id: "lore-p", letter: "P", value: 3, page: "lore.html", mode: "scatter", x: 86, y: 49, rotate: 7 },
         "lore-t": { id: "lore-t", letter: "T", value: 1, page: "lore.html", mode: "scatter", x: 22, y: 72, rotate: -4 }
     };
 
@@ -23,7 +23,6 @@
     let inventoryButton = null;
     let inventoryPanel = null;
     let inventoryList = null;
-    let inventoryCount = null;
     let grid = null;
     let activeDrag = null;
 
@@ -41,13 +40,28 @@
             if (!parsed || typeof parsed !== "object") {
                 return defaultState();
             }
+
+            const rawFound = Array.isArray(parsed.foundOrder) ? parsed.foundOrder : [];
+            const foundOrder = [];
+            rawFound.forEach(function (rawId) {
+                const id = rawId === "lore-r" ? "lore-p" : rawId;
+                if (TILE_DEFS[id] && !foundOrder.includes(id)) {
+                    foundOrder.push(id);
+                }
+            });
+
+            const placements = parsed.placements && typeof parsed.placements === "object"
+                ? Object.assign({}, parsed.placements)
+                : {};
+
+            if (placements["lore-r"] && !placements["lore-p"]) {
+                placements["lore-p"] = placements["lore-r"];
+            }
+            delete placements["lore-r"];
+
             return {
-                foundOrder: Array.isArray(parsed.foundOrder)
-                    ? parsed.foundOrder.filter(function (id) { return Boolean(TILE_DEFS[id]); })
-                    : [],
-                placements: parsed.placements && typeof parsed.placements === "object"
-                    ? parsed.placements
-                    : {},
+                foundOrder: foundOrder,
+                placements: placements,
                 solved: Boolean(parsed.solved)
             };
         } catch (error) {
@@ -92,12 +106,11 @@
         inventoryButton = document.createElement("button");
         inventoryButton.type = "button";
         inventoryButton.className = "scrabble-inventory-button";
+        inventoryButton.setAttribute("aria-label", "Inventory");
         inventoryButton.setAttribute("aria-expanded", "false");
         inventoryButton.setAttribute("aria-controls", "scrabble-inventory-panel");
         inventoryButton.innerHTML =
-            '<span class="scrabble-inventory-icon" aria-hidden="true"><span></span><span></span><span></span><span></span></span>' +
-            '<span class="scrabble-inventory-label">TILES</span>' +
-            '<span class="scrabble-inventory-badge" data-scrabble-count>0</span>';
+            '<img src="assets/images/lore/inventory.png" alt="" aria-hidden="true">';
 
         inventoryPanel = document.createElement("aside");
         inventoryPanel.id = "scrabble-inventory-panel";
@@ -116,7 +129,6 @@
         document.body.appendChild(inventoryPanel);
 
         inventoryList = inventoryPanel.querySelector("[data-scrabble-inventory-list]");
-        inventoryCount = inventoryButton.querySelector("[data-scrabble-count]");
 
         inventoryButton.addEventListener("click", function () {
             setInventoryOpen(inventoryPanel.hidden);
@@ -149,7 +161,6 @@
         }
 
         inventoryList.innerHTML = "";
-        inventoryCount.textContent = String(state.foundOrder.length);
 
         state.foundOrder.forEach(function (id) {
             const def = TILE_DEFS[id];
@@ -170,8 +181,15 @@
             inventoryList.appendChild(wrap);
         });
 
+        const hasTiles = state.foundOrder.length !== 0;
         const empty = inventoryPanel.querySelector("[data-scrabble-empty]");
-        empty.hidden = state.foundOrder.length !== 0;
+        const heading = inventoryPanel.querySelector(".scrabble-inventory-heading");
+        const note = inventoryPanel.querySelector(".scrabble-inventory-note");
+
+        empty.hidden = hasTiles;
+        heading.hidden = !hasTiles;
+        note.hidden = !hasTiles;
+        inventoryList.hidden = !hasTiles;
     }
 
     function pageHost() {
@@ -404,6 +422,10 @@
 
         event.preventDefault();
 
+        if (activeDrag) {
+            return;
+        }
+
         const source = event.currentTarget;
         const id = source.dataset.tileId;
         const def = TILE_DEFS[id];
@@ -411,32 +433,44 @@
             return;
         }
 
-        if (activeDrag) {
-            finishDrag(null);
-        }
-
-        delete state.placements[id];
-        saveState();
-        renderGrid();
-        renderFreeTiles();
-
-        const ghost = createTile(def, "scrabble-drag-ghost");
-        document.body.appendChild(ghost);
-
         activeDrag = {
             id: id,
             def: def,
-            ghost: ghost,
+            source: source,
+            ghost: null,
             candidateSlot: null,
-            pointerId: event.pointerId
+            pointerId: event.pointerId,
+            startX: event.clientX,
+            startY: event.clientY,
+            started: false,
+            originalPlacement: state.placements[id]
+                ? Object.assign({}, state.placements[id])
+                : null
         };
-
-        source.classList.add("is-drag-origin");
-        moveDrag(event);
 
         window.addEventListener("pointermove", moveDrag);
         window.addEventListener("pointerup", finishDrag, { once: true });
         window.addEventListener("pointercancel", finishDrag, { once: true });
+    }
+
+    function beginDrag(event) {
+        if (!activeDrag || activeDrag.started) {
+            return;
+        }
+
+        activeDrag.started = true;
+        delete state.placements[activeDrag.id];
+        saveState();
+
+        renderGrid();
+        renderFreeTiles();
+        renderInventory();
+
+        const ghost = createTile(activeDrag.def, "scrabble-drag-ghost");
+        document.body.appendChild(ghost);
+        activeDrag.ghost = ghost;
+
+        moveDrag(event);
     }
 
     function moveDrag(event) {
@@ -444,7 +478,21 @@
             return;
         }
 
+        if (!activeDrag.started) {
+            const dx = event.clientX - activeDrag.startX;
+            const dy = event.clientY - activeDrag.startY;
+            if (Math.sqrt(dx * dx + dy * dy) < 6) {
+                return;
+            }
+            beginDrag(event);
+            return;
+        }
+
         const ghost = activeDrag.ghost;
+        if (!ghost) {
+            return;
+        }
+
         let left = event.clientX - ghost.offsetWidth / 2;
         let top = event.clientY - ghost.offsetHeight / 2;
         activeDrag.candidateSlot = null;
@@ -503,12 +551,20 @@
 
         window.removeEventListener("pointermove", moveDrag);
 
-        document.querySelectorAll(".scrabble-tile.is-drag-origin").forEach(function (node) {
-            node.classList.remove("is-drag-origin");
-        });
         document.querySelectorAll("[data-scrabble-slot].is-targeted").forEach(function (node) {
             node.classList.remove("is-targeted");
         });
+
+        if (!drag.started) {
+            if (drag.originalPlacement) {
+                delete state.placements[drag.id];
+                saveState();
+                renderGrid();
+                renderFreeTiles();
+                renderInventory();
+            }
+            return;
+        }
 
         if (drag.candidateSlot !== null) {
             const displaced = occupiedTileForSlot(drag.candidateSlot, drag.id);
@@ -522,10 +578,10 @@
         } else {
             const clientX = event && typeof event.clientX === "number"
                 ? event.clientX
-                : parseFloat(drag.ghost.style.left) + drag.ghost.offsetWidth / 2;
+                : drag.startX;
             const clientY = event && typeof event.clientY === "number"
                 ? event.clientY
-                : parseFloat(drag.ghost.style.top) + drag.ghost.offsetHeight / 2;
+                : drag.startY;
 
             state.placements[drag.id] = {
                 kind: "free",
@@ -535,7 +591,10 @@
             };
         }
 
-        drag.ghost.remove();
+        if (drag.ghost) {
+            drag.ghost.remove();
+        }
+
         saveState();
         renderGrid();
         renderFreeTiles();
