@@ -15,6 +15,7 @@ function saveUnlockedSections(unlockedSections) {
 
 function resetPuzzleProgress() {
     localStorage.removeItem(STORAGE_KEY);
+    localStorage.removeItem("jonathanScrabbleStateV1");
     window.location.reload();
 }
 
@@ -24,6 +25,7 @@ const params = new URLSearchParams(window.location.search);
 
 if (params.get("reset") === "1") {
     localStorage.removeItem(STORAGE_KEY);
+    localStorage.removeItem("jonathanScrabbleStateV1");
     params.delete("reset");
 
     const cleanQuery = params.toString();
