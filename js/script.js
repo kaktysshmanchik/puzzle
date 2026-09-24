@@ -44,6 +44,7 @@ rows.forEach((row) => {
     const correctPasscode = row.dataset.passcode;
     const input = row.querySelector(".passcode-input");
     const verifyButton = row.querySelector(".verify-button");
+    const devUnlockButton = row.querySelector(".dev-unlock-button");
     const link = row.querySelector(".section-link");
     const tooltip = row.querySelector(".tooltip");
 
@@ -77,6 +78,9 @@ rows.forEach((row) => {
 
         input.disabled = true;
         verifyButton.disabled = true;
+        if (devUnlockButton) {
+            devUnlockButton.disabled = true;
+        }
 
         if (save) {
             unlockedSections[sectionId] = true;
@@ -98,6 +102,12 @@ rows.forEach((row) => {
     }
 
     verifyButton.addEventListener("click", verifyPasscode);
+
+    if (devUnlockButton) {
+        devUnlockButton.addEventListener("click", () => {
+            unlock();
+        });
+    }
 
     input.addEventListener("keydown", (event) => {
         if (event.key === "Enter") {
