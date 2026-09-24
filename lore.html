@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The lore</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/lore-message.css">
 </head>
 <body>
 <main class="page">
@@ -29,7 +30,25 @@
         </div>
     </section>
 
+    <section class="lore-message-puzzle" data-message-rebuild aria-labelledby="message-rebuild-title">
+        <h2 id="message-rebuild-title">MESSAGE RECONSTRUCTION</h2>
+        <p>Put the fragments back where they belong.</p>
+
+        <div class="message-rebuild-board">
+            <div class="message-piece-pile" data-message-pile aria-label="Shuffled message fragments"></div>
+
+            <div class="message-envelope" data-message-envelope hidden aria-label="Completed message reward">
+                <div class="envelope-body"></div>
+                <div class="envelope-card">[UPDATE]</div>
+                <button class="envelope-flap" data-envelope-flap type="button" aria-label="Pull open envelope flap"></button>
+            </div>
+
+            <div class="message-order-grid" data-message-grid aria-label="Message reconstruction slots"></div>
+        </div>
+    </section>
+
 </main>
 <script src="js/scrabble.js"></script>
+<script src="js/lore-message.js"></script>
 </body>
 </html>
