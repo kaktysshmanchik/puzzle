@@ -28,12 +28,13 @@
             if (saved && typeof saved === 'object') {
                 return {
                     slots: saved.slots && typeof saved.slots === 'object' ? saved.slots : {},
+                    free: saved.free && typeof saved.free === 'object' ? saved.free : {},
                     opened: !!saved.opened,
                     shuffle: Array.isArray(saved.shuffle) && saved.shuffle.length === 20 ? saved.shuffle : makeShuffle()
                 };
             }
         } catch (_) {}
-        return { slots: {}, opened: false, shuffle: makeShuffle() };
+        return { slots: {}, free: {}, opened: false, shuffle: makeShuffle() };
     }
 
     function makeShuffle() {
@@ -60,22 +61,29 @@
         return img;
     }
 
+    function defaultFreePosition(position, pileIndex) {
+        /* A tight shuffled heap in the middle, with enough offset to show there are many pieces. */
+        return {
+            x: 50 + ((((pileIndex * 37) + position * 11) % 18) - 9),
+            y: 50 + ((((pileIndex * 53) + position * 7) % 22) - 11)
+        };
+    }
+
     function render() {
         pile.innerHTML = '';
         grid.innerHTML = '';
 
         const placed = new Set(Object.values(state.slots).map(Number));
-        const pilePositions = state.shuffle.filter(position => !placed.has(position));
+        const freePositions = state.shuffle.filter(position => !placed.has(position));
 
-        pilePositions.forEach((position, i) => {
+        freePositions.forEach((position, i) => {
             const piece = pieces[position - 1];
             const img = createPiece(piece);
+            const pos = state.free[position] || defaultFreePosition(position, i);
             const angle = ((position * 17) % 15) - 7;
-            const x = ((i * 37) % 70) - 35;
-            const y = ((i * 53) % 90) - 45;
+            img.style.setProperty('--free-x', `${pos.x}%`);
+            img.style.setProperty('--free-y', `${pos.y}%`);
             img.style.setProperty('--pile-r', `${angle}deg`);
-            img.style.setProperty('--pile-x', `${x}px`);
-            img.style.setProperty('--pile-y', `${y}px`);
             img.style.zIndex = String(i + 1);
             pile.appendChild(img);
         });
@@ -129,7 +137,9 @@
             fromSlot: parentSlot ? Number(parentSlot.dataset.slot) : null,
             offsetX: event.clientX - rect.left,
             offsetY: event.clientY - rect.top,
-            target: null
+            target: null,
+            clientX: event.clientX,
+            clientY: event.clientY
         };
 
         img.style.setProperty('--drag-width', `${rect.width}px`);
@@ -144,6 +154,8 @@
     function moveDrag(event) {
         if (!drag) return;
         event.preventDefault();
+        drag.clientX = event.clientX;
+        drag.clientY = event.clientY;
         drag.img.style.setProperty('--drag-x', `${event.clientX - drag.offsetX}px`);
         drag.img.style.setProperty('--drag-y', `${event.clientY - drag.offsetY}px`);
 
@@ -170,8 +182,19 @@
             const displaced = Number(state.slots[targetPosition]);
             if (displaced && displaced !== drag.piecePosition) {
                 delete state.slots[targetPosition];
+                /* A displaced wrong piece goes back onto the free table. */
+                state.free[displaced] = { x: 50, y: 50 };
             }
             state.slots[targetPosition] = drag.piecePosition;
+            delete state.free[drag.piecePosition];
+        } else {
+            /* Dropping anywhere outside a slot leaves the piece on the freeform table. */
+            const rect = pile.getBoundingClientRect();
+            const centreX = drag.clientX - drag.offsetX + (drag.img.getBoundingClientRect().width / 2);
+            const centreY = drag.clientY - drag.offsetY + (drag.img.getBoundingClientRect().height / 2);
+            const x = Math.max(5, Math.min(95, ((centreX - rect.left) / rect.width) * 100));
+            const y = Math.max(5, Math.min(95, ((centreY - rect.top) / rect.height) * 100));
+            state.free[drag.piecePosition] = { x, y };
         }
 
         drag.img.remove();
