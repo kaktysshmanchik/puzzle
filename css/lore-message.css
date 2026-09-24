@@ -5,36 +5,35 @@
     border-top: 1px solid var(--border);
 }
 
-.lore-message-puzzle h2 {
-    margin: 0 0 8px;
-    text-align: center;
-    letter-spacing: .08em;
-}
-
-.lore-message-puzzle > p {
-    margin: 0 0 28px;
+.lore-puzzle-quote {
+    margin: 0 0 30px;
     text-align: center;
     color: var(--muted);
+    font-style: italic;
+    font-size: 18px;
 }
 
 .message-rebuild-board {
-    display: grid;
-    grid-template-columns: minmax(260px, 1fr) minmax(340px, 1.15fr);
-    gap: 42px;
-    align-items: start;
+    display: flex;
+    flex-direction: column;
+    gap: 38px;
 }
 
+/* Large freeform table: pieces begin in a shuffled pile, but can be left anywhere here. */
 .message-piece-pile {
-    position: sticky;
-    top: 24px;
-    min-height: 520px;
+    position: relative;
+    width: 100%;
+    min-height: 680px;
     border: 1px dashed #5b534b;
-    background: rgba(255,255,255,.018);
+    background:
+        radial-gradient(circle at 50% 44%, rgba(255,255,255,.035), transparent 48%),
+        rgba(255,255,255,.018);
+    overflow: hidden;
 }
 
 .message-piece {
     display: block;
-    width: min(92%, 390px);
+    width: min(540px, 72vw);
     height: auto;
     border: 1px solid rgba(232,223,207,.2);
     box-shadow: 0 7px 18px rgba(0,0,0,.42);
@@ -48,28 +47,29 @@
 
 .message-piece-pile .message-piece {
     position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%) translate(var(--pile-x), var(--pile-y)) rotate(var(--pile-r));
+    left: var(--free-x, 50%);
+    top: var(--free-y, 50%);
+    transform: translate(-50%, -50%) rotate(var(--pile-r, 0deg));
 }
 
 .message-piece.is-dragging {
     position: fixed !important;
-    z-index: 10000;
+    z-index: 10000 !important;
     width: var(--drag-width) !important;
-    max-height: 75vh;
+    max-height: 78vh;
     object-fit: contain;
     left: 0 !important;
     top: 0 !important;
     margin: 0 !important;
     transform: translate(var(--drag-x), var(--drag-y)) !important;
     pointer-events: none;
-    opacity: .96;
+    opacity: .97;
 }
 
 .message-order-grid {
     display: grid;
     gap: 8px;
+    width: 100%;
 }
 
 .message-slot-row {
@@ -119,12 +119,12 @@
 
 .message-slot.is-correct .message-piece { cursor: default; }
 
+/* Reward replaces the freeform pile once every fragment is correct. */
 .message-envelope {
-    position: sticky;
-    top: 80px;
-    width: min(360px, 92%);
+    position: relative;
+    width: min(430px, 92%);
     aspect-ratio: 1.5 / 1;
-    margin: 110px auto 0;
+    margin: 80px auto 110px;
     perspective: 900px;
 }
 
@@ -132,6 +132,7 @@
 
 .envelope-body {
     position: absolute;
+    z-index: 0;
     inset: 0;
     overflow: hidden;
     border: 1px solid #846f54;
@@ -143,6 +144,7 @@
 .envelope-body::after {
     content: "";
     position: absolute;
+    z-index: 2;
     bottom: -46%;
     width: 78%;
     height: 115%;
@@ -166,10 +168,15 @@
     color: #2b241d;
     font: 700 22px/1.2 "Courier New", Courier, monospace;
     box-shadow: 0 3px 12px rgba(0,0,0,.2);
-    transition: transform 700ms cubic-bezier(.2,.8,.2,1);
+    opacity: 0;
+    transform: translateY(42%);
+    transition: transform 700ms cubic-bezier(.2,.8,.2,1), opacity 120ms ease 180ms;
 }
 
-.message-envelope.is-open .envelope-card { transform: translateY(-76%); }
+.message-envelope.is-open .envelope-card {
+    opacity: 1;
+    transform: translateY(-76%);
+}
 
 .envelope-flap {
     position: absolute;
@@ -193,8 +200,12 @@
     pointer-events: none;
 }
 
+/* Keep the Scrabble lock clearly below the reconstruction grid. */
+.scrabble-word-puzzle {
+    margin-top: 58px;
+}
+
 @media (max-width: 760px) {
-    .message-rebuild-board { grid-template-columns: 1fr; }
-    .message-piece-pile { position: relative; top: auto; min-height: 440px; }
-    .message-envelope { position: relative; top: auto; margin-top: 70px; }
+    .message-piece-pile { min-height: 560px; }
+    .message-piece { width: min(500px, 86vw); }
 }
