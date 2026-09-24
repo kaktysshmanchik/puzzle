@@ -1902,3 +1902,464 @@ h1 {
         grid-template-columns: 1fr;
     }
 }
+/* Scrabble tile hunt */
+.scrabble-scatter-host {
+    position: relative;
+}
+
+.scrabble-tile {
+    width: 52px;
+    height: 52px;
+    padding: 0;
+    border: 1px solid #806c4d;
+    border-radius: 5px;
+    background:
+        linear-gradient(145deg, rgba(255,255,255,0.34), transparent 35%),
+        linear-gradient(315deg, rgba(72,48,24,0.13), transparent 42%),
+        #d8bd8a;
+    color: #2b2118;
+    box-shadow:
+        0 3px 0 #9c7f53,
+        0 7px 16px rgba(0,0,0,0.28),
+        inset 0 0 0 1px rgba(255,255,255,0.28);
+    font-family: Georgia, "Times New Roman", serif;
+    cursor: grab;
+    user-select: none;
+    touch-action: none;
+}
+
+.scrabble-tile:active {
+    cursor: grabbing;
+}
+
+.scrabble-letter {
+    position: absolute;
+    left: 50%;
+    top: 46%;
+    transform: translate(-50%, -50%);
+    font-size: 29px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.scrabble-value {
+    position: absolute;
+    right: 5px;
+    bottom: 3px;
+    font: 700 11px/1 "Courier New", Courier, monospace;
+}
+
+.scrabble-source-tile {
+    z-index: 12;
+    cursor: pointer;
+}
+
+.scrabble-source-tile:hover,
+.scrabble-source-tile:focus-visible {
+    outline: none;
+    box-shadow:
+        0 3px 0 #9c7f53,
+        0 10px 22px rgba(0,0,0,0.36),
+        0 0 0 2px rgba(222, 202, 157, 0.22),
+        inset 0 0 0 1px rgba(255,255,255,0.28);
+}
+
+.scrabble-scatter-tile {
+    position: absolute;
+    transform: translate(-50%, -50%) rotate(var(--tile-rotation, 0deg));
+}
+
+.scrabble-peek-anchor {
+    position: relative;
+    z-index: 4;
+}
+
+.scrabble-peek-tile {
+    position: absolute;
+    z-index: 3;
+    transform: rotate(var(--tile-rotation, 0deg));
+    transition: transform 260ms ease, filter 260ms ease;
+}
+
+.scrabble-peek-tile.is-revealed,
+.scrabble-peek-tile:focus-visible {
+    z-index: 8;
+    transform: translateX(38px) rotate(var(--tile-rotation, 0deg));
+    filter: brightness(1.06);
+}
+
+.scrabble-inventory-button {
+    position: fixed;
+    right: 18px;
+    bottom: 18px;
+    z-index: 9000;
+    display: grid;
+    grid-template-columns: 28px auto;
+    grid-template-rows: auto auto;
+    align-items: center;
+    column-gap: 8px;
+    min-width: 88px;
+    min-height: 58px;
+    padding: 9px 11px;
+    border: 1px solid #655a4e;
+    background: rgba(29, 26, 24, 0.96);
+    color: #e8ddd0;
+    box-shadow: 0 10px 28px rgba(0,0,0,0.36);
+    cursor: pointer;
+    backdrop-filter: blur(5px);
+}
+
+.scrabble-inventory-button:hover,
+.scrabble-inventory-button:focus-visible {
+    outline: none;
+    border-color: #aa9b8a;
+    background: rgba(38, 33, 29, 0.98);
+}
+
+.scrabble-inventory-button.is-receiving {
+    animation: scrabble-inventory-pulse 520ms ease;
+}
+
+.scrabble-inventory-icon {
+    position: relative;
+    grid-row: 1 / span 2;
+    display: grid;
+    grid-template-columns: repeat(2, 9px);
+    grid-template-rows: repeat(2, 9px);
+    gap: 2px;
+    width: 20px;
+    height: 20px;
+}
+
+.scrabble-inventory-icon span {
+    display: block;
+    border: 1px solid #b9a37d;
+    background: #d8bd8a;
+    box-shadow: inset 0 0 0 1px rgba(75,53,31,0.16);
+}
+
+.scrabble-inventory-label {
+    align-self: end;
+    font: 700 9px/1 "Courier New", Courier, monospace;
+    letter-spacing: 0.16em;
+    color: #9e948a;
+}
+
+.scrabble-inventory-badge {
+    align-self: start;
+    font: 700 16px/1 Georgia, serif;
+    color: #f0e4d6;
+}
+
+.scrabble-inventory-panel {
+    position: fixed;
+    right: 18px;
+    bottom: 86px;
+    z-index: 8999;
+    width: min(390px, calc(100vw - 36px));
+    max-height: min(520px, calc(100vh - 120px));
+    overflow: auto;
+    padding: 16px;
+    border: 1px solid #655a4e;
+    background:
+        linear-gradient(180deg, rgba(255,255,255,0.025), transparent 42%),
+        rgba(30, 27, 24, 0.985);
+    color: #ded4c6;
+    box-shadow: 0 18px 60px rgba(0,0,0,0.52);
+    backdrop-filter: blur(7px);
+}
+
+.scrabble-inventory-panel[hidden] {
+    display: none !important;
+}
+
+.scrabble-inventory-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #4b433c;
+}
+
+.scrabble-inventory-heading span,
+.scrabble-inventory-heading strong {
+    display: block;
+}
+
+.scrabble-inventory-heading span {
+    margin-bottom: 3px;
+    color: #958a7f;
+    font: 700 9px/1.2 "Courier New", Courier, monospace;
+    letter-spacing: 0.16em;
+}
+
+.scrabble-inventory-heading strong {
+    color: #efe4d5;
+    font-size: 20px;
+}
+
+.scrabble-inventory-close {
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: 1px solid #5f554c;
+    background: #28231f;
+    color: #d7ccbd;
+    font: 22px/1 Georgia, serif;
+    cursor: pointer;
+}
+
+.scrabble-inventory-note,
+.scrabble-inventory-empty {
+    margin: 12px 0 0;
+    color: #8f867c;
+    font: 11px/1.5 "Courier New", Courier, monospace;
+}
+
+.scrabble-inventory-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.scrabble-inventory-entry {
+    min-width: 52px;
+    min-height: 52px;
+}
+
+.scrabble-inventory-tile {
+    position: relative;
+    transform: rotate(var(--tile-rotation, 0deg));
+}
+
+.scrabble-inventory-tile:hover {
+    animation: scrabble-tile-shiver 180ms linear infinite;
+}
+
+.scrabble-inventory-tile.is-placed {
+    box-shadow:
+        0 3px 0 #8b744f,
+        0 0 0 2px rgba(132, 151, 121, 0.45),
+        inset 0 0 0 1px rgba(255,255,255,0.25);
+}
+
+.scrabble-inventory-tile.is-placed::after {
+    content: "";
+    position: absolute;
+    left: 4px;
+    top: 4px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #6e845f;
+    box-shadow: 0 0 0 1px rgba(45,57,39,0.55);
+}
+
+.scrabble-collect-flyer,
+.scrabble-drag-ghost {
+    position: fixed;
+    z-index: 10001;
+    margin: 0;
+    pointer-events: none;
+}
+
+.scrabble-collect-flyer {
+    transition:
+        left 500ms cubic-bezier(.2,.8,.2,1),
+        top 500ms cubic-bezier(.2,.8,.2,1),
+        transform 500ms ease,
+        opacity 500ms ease;
+}
+
+.scrabble-drag-ghost {
+    transform: rotate(var(--tile-rotation, 0deg)) scale(1.05);
+    box-shadow:
+        0 3px 0 #9c7f53,
+        0 14px 30px rgba(0,0,0,0.45),
+        inset 0 0 0 1px rgba(255,255,255,0.28);
+}
+
+.scrabble-tile.is-drag-origin {
+    opacity: 0.28;
+}
+
+.scrabble-free-tile {
+    position: absolute;
+    z-index: 120;
+    transform: rotate(var(--tile-rotation, 0deg));
+}
+
+.scrabble-word-puzzle {
+    margin-top: min(62vh, 520px);
+    padding: clamp(20px, 4vw, 30px);
+    border: 1px solid #5b5248;
+    background:
+        linear-gradient(180deg, rgba(216, 189, 138, 0.035), transparent 45%),
+        #1d1a18;
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.015);
+}
+
+.scrabble-word-puzzle h2 {
+    margin: 0 0 7px;
+    font-size: clamp(20px, 4vw, 30px);
+    letter-spacing: 0.1em;
+}
+
+.scrabble-word-puzzle > p {
+    margin: 0 0 20px;
+    color: #9d9388;
+    font: 12px/1.5 "Courier New", Courier, monospace;
+}
+
+.scrabble-word-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 64px);
+    gap: 10px;
+    justify-content: center;
+    padding: 18px;
+    border: 1px dashed #554c43;
+    background: #171513;
+}
+
+.scrabble-word-slot {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 64px;
+    height: 64px;
+    border: 1px solid #655b51;
+    background:
+        linear-gradient(135deg, rgba(255,255,255,0.025), transparent 52%),
+        #24201d;
+    box-shadow: inset 0 0 0 1px rgba(0,0,0,0.3);
+    transition: border-color 120ms ease, background 120ms ease, transform 120ms ease;
+}
+
+.scrabble-word-slot::before {
+    content: attr(data-slot-number);
+    color: #5d554e;
+    font: 700 10px/1 "Courier New", Courier, monospace;
+}
+
+.scrabble-word-slot.is-targeted {
+    border-color: #b9a77f;
+    background: #302a24;
+    transform: scale(1.04);
+}
+
+.scrabble-word-slot .scrabble-grid-tile {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin: 0;
+    transform: translate(-50%, -50%) rotate(var(--tile-rotation, 0deg));
+}
+
+.scrabble-word-slot:has(.scrabble-grid-tile)::before {
+    opacity: 0;
+}
+
+.scrabble-reward {
+    margin-top: 18px;
+    padding: 16px;
+    border: 1px solid #657260;
+    background: rgba(93, 116, 84, 0.09);
+    text-align: center;
+}
+
+.scrabble-reward[hidden] {
+    display: none !important;
+}
+
+.scrabble-reward span,
+.scrabble-reward small {
+    display: block;
+    color: #929d8c;
+    font: 700 10px/1.35 "Courier New", Courier, monospace;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.scrabble-reward strong {
+    display: block;
+    margin: 10px 0;
+    color: #dce8d5;
+    font-size: clamp(15px, 3.5vw, 22px);
+    letter-spacing: 0.05em;
+    overflow-wrap: anywhere;
+    user-select: all;
+}
+
+@keyframes scrabble-tile-shiver {
+    0%, 100% { transform: translate(0, 0) rotate(var(--tile-rotation, 0deg)); }
+    25% { transform: translate(-1px, 0) rotate(calc(var(--tile-rotation, 0deg) - 1.5deg)); }
+    50% { transform: translate(1px, -1px) rotate(calc(var(--tile-rotation, 0deg) + 1deg)); }
+    75% { transform: translate(0, 1px) rotate(calc(var(--tile-rotation, 0deg) - 0.8deg)); }
+}
+
+@keyframes scrabble-inventory-pulse {
+    0%, 100% { transform: scale(1); }
+    45% { transform: scale(1.08); }
+}
+
+@media (max-width: 620px) {
+    .scrabble-tile {
+        width: 46px;
+        height: 46px;
+    }
+
+    .scrabble-letter {
+        font-size: 25px;
+    }
+
+    .scrabble-value {
+        font-size: 10px;
+    }
+
+    .scrabble-inventory-button {
+        right: 12px;
+        bottom: 12px;
+    }
+
+    .scrabble-inventory-panel {
+        right: 12px;
+        bottom: 78px;
+        width: calc(100vw - 24px);
+    }
+
+    .scrabble-word-grid {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 6px;
+        padding: 10px;
+    }
+
+    .scrabble-word-slot {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 1;
+    }
+
+    .scrabble-word-slot .scrabble-grid-tile {
+        width: 78%;
+        height: 78%;
+    }
+
+    .scrabble-peek-tile.is-revealed,
+    .scrabble-peek-tile:focus-visible {
+        transform: translateX(28px) rotate(var(--tile-rotation, 0deg));
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .scrabble-inventory-tile:hover,
+    .scrabble-inventory-button.is-receiving {
+        animation: none;
+    }
+
+    .scrabble-collect-flyer,
+    .scrabble-peek-tile {
+        transition-duration: 0.01ms;
+    }
+}
