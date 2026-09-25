@@ -21,3 +21,12 @@
 .architecture-win-card-back{transform:rotateY(180deg);background:#d7c19a;color:#2a241e;font:700 clamp(22px,4vw,42px)/1.2 "Courier New",Courier,monospace;letter-spacing:.08em;text-transform:uppercase}
 .architecture-puzzle.just-completed .architecture-piece.is-locked{box-shadow:0 0 0 1px rgba(212,180,61,.3),0 0 24px rgba(212,180,61,.16)}
 @media(max-width:760px){.architecture-puzzle{margin-top:48px;padding-top:28px}.architecture-piece-tray{margin-bottom:24px}.architecture-piece{box-shadow:0 4px 10px rgba(0,0,0,.35)}}
+
+
+.architecture-win-card-back.lore-datapad-face {
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    letter-spacing: normal;
+    text-transform: none;
+}
