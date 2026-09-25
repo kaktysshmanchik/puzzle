@@ -39,7 +39,8 @@
     left:2vw;
     top:-8vh;
     width:96vw;
-    animation:player-notes-scroll 180s linear infinite;
+    animation:none;
+    will-change:transform;
 }
 
 .player-notes-stream-copy{
