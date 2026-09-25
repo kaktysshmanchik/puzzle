@@ -67,3 +67,100 @@
             // file:// browsers may block fetch; the embedded excerpt remains as a fallback.
         });
 })();
+
+
+(() => {
+    const root = document.querySelector("[data-player-book]");
+    if (!root) return;
+
+    const book = root.querySelector("[data-book]");
+    const pages = Array.from(root.querySelectorAll("[data-book-page]"));
+    const previousButton = root.querySelector("[data-book-prev]");
+    const nextButton = root.querySelector("[data-book-next]");
+    const positionLabel = root.querySelector("[data-book-position]");
+    const reward = root.querySelector("[data-book-reward]");
+    const STORAGE_KEY = "playerTwoNotesBookV1";
+
+    if (!book || !pages.length || !previousButton || !nextButton || !positionLabel || !reward) return;
+
+    let state = {
+        position: 0,
+        completed: false
+    };
+
+    try {
+        const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
+        if (saved && typeof saved === "object") {
+            state.position = Math.min(pages.length, Math.max(0, Number(saved.position) || 0));
+            state.completed = Boolean(saved.completed);
+        }
+    } catch (_) {}
+
+    if (new URLSearchParams(window.location.search).get("reset") === "1") {
+        localStorage.removeItem(STORAGE_KEY);
+        state = { position: 0, completed: false };
+    }
+
+    function save() {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    }
+
+    function render() {
+        pages.forEach((page, index) => {
+            const turned = index < state.position;
+            page.classList.toggle("is-turned", turned);
+            page.style.zIndex = String(
+                turned
+                    ? index + 1
+                    : pages.length - index + 20
+            );
+        });
+
+        previousButton.disabled = state.position === 0;
+        nextButton.disabled = state.position === pages.length;
+
+        if (state.position === pages.length) {
+            positionLabel.textContent = "COMPLETE";
+        } else {
+            positionLabel.textContent = (state.position + 1) + " / " + pages.length;
+        }
+
+        reward.hidden = !state.completed;
+    }
+
+    function next() {
+        if (state.position >= pages.length) return;
+
+        state.position += 1;
+
+        if (state.position === pages.length) {
+            state.completed = true;
+        }
+
+        save();
+        render();
+    }
+
+    function previous() {
+        if (state.position <= 0) return;
+
+        state.position -= 1;
+        save();
+        render();
+    }
+
+    previousButton.addEventListener("click", previous);
+    nextButton.addEventListener("click", next);
+
+    book.addEventListener("keydown", (event) => {
+        if (event.key === "ArrowRight") {
+            event.preventDefault();
+            next();
+        } else if (event.key === "ArrowLeft") {
+            event.preventDefault();
+            previous();
+        }
+    });
+
+    render();
+})();
