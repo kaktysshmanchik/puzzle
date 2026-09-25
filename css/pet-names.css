@@ -22,3 +22,10 @@
 .pet-name-card-front{background:linear-gradient(145deg,rgba(102,252,241,.08),transparent 40%),var(--panel,#1F2833)}
 .pet-name-card-back{transform:rotateY(180deg);font:700 24px/1.35 "Courier New",Courier,monospace;letter-spacing:.08em}
 @media(max-width:760px){.pet-name-board{grid-template-columns:1fr;grid-template-areas:"left" "right"}.pet-name-source,.pet-name-win-card{min-height:420px}}
+
+
+.pet-name-card-front.lore-datapad-face,
+.pet-name-card-back.lore-datapad-face {
+    background: transparent;
+    color: inherit;
+}
