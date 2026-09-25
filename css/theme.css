@@ -215,3 +215,14 @@ a:hover,.dossier-back:hover,.achievements-back:hover,.statistics-back:hover{colo
 .architecture-win-card-face{border-color:var(--accent-deep)}
 
 ::selection{background:var(--accent);color:var(--background)}
+
+
+/* Datapad modal override */
+.statistics-body .stat-message-modal {
+    background: transparent;
+}
+
+.statistics-body .stat-datapad-screen,
+.statistics-body .stat-datapad-screen .stat-message-copy {
+    background: transparent;
+}
