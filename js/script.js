@@ -1,3 +1,4 @@
+(()=>{if(!document.querySelector('link[data-site-theme]')){const l=document.createElement('link');l.rel='stylesheet';l.href='css/theme.css';l.dataset.siteTheme='';document.head.appendChild(l);}})();
 const STORAGE_KEY = "jonathanPuzzleUnlocked";
 const rows = document.querySelectorAll(".link-row");
 function loadUnlockedSections(){try{return JSON.parse(localStorage.getItem(STORAGE_KEY))||{};}catch{return {};}}
