@@ -2,7 +2,7 @@ const STORAGE_KEY = "jonathanPuzzleUnlocked";
 const rows = document.querySelectorAll(".link-row");
 function loadUnlockedSections(){try{return JSON.parse(localStorage.getItem(STORAGE_KEY))||{};}catch{return {};}}
 function saveUnlockedSections(unlockedSections){localStorage.setItem(STORAGE_KEY,JSON.stringify(unlockedSections));}
-function clearAllPuzzleProgress(){localStorage.removeItem(STORAGE_KEY);localStorage.removeItem("jonathanScrabbleStateV1");localStorage.removeItem("loreMessageRebuildV1");localStorage.removeItem("lorePetNamesV1");}
+function clearAllPuzzleProgress(){localStorage.removeItem(STORAGE_KEY);localStorage.removeItem("jonathanScrabbleStateV1");localStorage.removeItem("loreMessageRebuildV1");localStorage.removeItem("lorePetNamesV1");localStorage.removeItem("loreArchitecturePuzzleV1");}
 function resetPuzzleProgress(){clearAllPuzzleProgress();window.location.reload();}
 window.resetPuzzleProgress=resetPuzzleProgress;
 const params=new URLSearchParams(window.location.search);
