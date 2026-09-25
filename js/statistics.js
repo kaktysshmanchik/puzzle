@@ -1,3 +1,4 @@
+(()=>{if(!document.querySelector('link[data-site-theme]')){const l=document.createElement('link');l.rel='stylesheet';l.href='css/theme.css';l.dataset.siteTheme='';document.head.appendChild(l);}})();
 (() => {
     const questions = document.querySelectorAll("[data-stat-question]");
 
