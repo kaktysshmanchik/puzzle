@@ -170,6 +170,7 @@
             setRound(round);
             state = "running";
             button.disabled = false;
+            button.focus({ preventScroll: true });
             message.textContent = "Round " + (round + 1) + "/3 // Signal window narrowed.";
             startAnimation();
         }, 650);
@@ -177,8 +178,14 @@
 
     button.addEventListener("click", attemptSync);
 
+    button.addEventListener("keydown", (event) => {
+        if (event.code !== "Space" || event.repeat) return;
+        event.preventDefault();
+        attemptSync();
+    });
+
     game.addEventListener("keydown", (event) => {
-        if (event.code !== "Space" || event.target === button) return;
+        if (event.code !== "Space" || event.repeat || event.target === button) return;
         event.preventDefault();
         attemptSync();
     });
