@@ -81,7 +81,7 @@ h1 {
 .passcode-control {
     position: relative;
     display: grid;
-    grid-template-columns: minmax(0, 1fr) auto auto;
+    grid-template-columns: minmax(0, 1fr) auto;
     gap: 10px;
 }
 
