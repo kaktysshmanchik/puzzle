@@ -6,7 +6,7 @@
     const slots=root.querySelector('[data-pet-name-slots]');
     const card=root.querySelector('[data-pet-name-card]');
     const KEY='lorePetNamesV1';
-    const names=['Love','My dear','Baby',"Person I'm romantically entangled with",'Babe','giggles','sweetheart','gorgeous','beautiful','Skittles','KitKat','QAcuitie','Sex kitten'];
+    const names=['My love','My dear','Baby',"Person I'm romantically entangled with",'Babe','Giggles','Sweetheart','Gorgeous','Beautiful','Skittles','KitKat','QAcuitie','Sex kitten'];
     let drag=null;
     let state=load();
 
