@@ -9,3 +9,52 @@
 .message-order-grid{display:grid;gap:8px;width:100%}.message-slot-row{display:grid;grid-template-columns:30px minmax(0,1fr);gap:9px;align-items:start}.message-slot-label{padding-top:13px;color:#cfc4b4;font:700 15px/1 "Courier New",Courier,monospace;text-align:right}.message-slot{min-height:48px;border:1px solid #5b534b;background:#211e1b}.message-slot.is-target{border-color:#d4b43d;background:rgba(212,180,61,.12)}.message-slot.is-correct{border-color:#315f3a;background:rgba(35,88,48,.22)}.message-slot.is-wrong{border-color:#8e3939;background:rgba(120,39,39,.18)}.message-slot .message-piece{width:100%;max-width:none;border:0;box-shadow:none}.message-slot.is-correct .message-piece{cursor:default}
 .message-win-card{position:relative;width:100%;height:680px;padding:0;border:0;background:transparent;perspective:1400px;cursor:pointer}.message-win-card[hidden]{display:none}.message-win-card-inner{position:absolute;inset:0;display:block;transform-style:preserve-3d;transition:transform .7s cubic-bezier(.2,.75,.25,1)}.message-win-card.is-flipped .message-win-card-inner{transform:rotateY(180deg)}.message-win-card-face{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;box-sizing:border-box;border:1px solid #9a876b;background:#d7c19a;box-shadow:0 12px 30px rgba(0,0,0,.28);backface-visibility:hidden;-webkit-backface-visibility:hidden}.message-win-card-back{transform:rotateY(180deg);color:#2b241d;font:700 24px/1.35 "Courier New",Courier,monospace}
 .scrabble-word-puzzle{margin-top:58px}@media(max-width:760px){.message-piece-pile,.message-win-card{min-height:560px;height:560px}.message-piece{width:min(500px,86vw)}}
+
+/* Shared Lore datapad faces */
+.lore-datapad-face {
+    padding: 0 !important;
+    border: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    overflow: hidden;
+}
+
+.lore-datapad-asset {
+    position: relative;
+    display: inline-block;
+    max-width: 100%;
+    max-height: 100%;
+    line-height: 0;
+}
+
+.lore-datapad-asset > img {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    pointer-events: none;
+    user-select: none;
+}
+
+.lore-datapad-screen {
+    position: absolute;
+    top: 21%;
+    right: 18%;
+    bottom: 21%;
+    left: 18%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    overflow: hidden;
+    padding: 8px;
+    background: transparent;
+    color: #d9fbf8;
+    font: 700 clamp(12px, 2vw, 22px)/1.35 "Courier New", Courier, monospace;
+    letter-spacing: .04em;
+    text-align: center;
+    text-transform: none;
+}
