@@ -49,7 +49,29 @@
 
     nextChunk();
 
-    track.addEventListener("animationiteration", nextChunk);
+    let scrollOffset = 0;
+    let previousFrame = 0;
+    const scrollSpeed = 12;
+
+    function animateBackground(time) {
+        if (!previousFrame) previousFrame = time;
+
+        const deltaSeconds = Math.min((time - previousFrame) / 1000, 0.1);
+        previousFrame = time;
+        scrollOffset += scrollSpeed * deltaSeconds;
+
+        const copyHeight = copyA.offsetHeight;
+
+        if (copyHeight > 0 && scrollOffset >= copyHeight) {
+            scrollOffset -= copyHeight;
+            nextChunk();
+        }
+
+        track.style.transform = "translate3d(0," + (-scrollOffset) + "px,0)";
+        requestAnimationFrame(animateBackground);
+    }
+
+    requestAnimationFrame(animateBackground);
 
     fetch("assets/text/all_reddit.txt")
         .then((response) => {
@@ -61,6 +83,8 @@
             if (!loaded) return;
             archive = loaded;
             cursor = 0;
+            scrollOffset = 0;
+            track.style.transform = "translate3d(0,0,0)";
             nextChunk();
         })
         .catch(() => {
