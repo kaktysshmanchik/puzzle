@@ -78,10 +78,9 @@
     const previousButton = root.querySelector("[data-book-prev]");
     const nextButton = root.querySelector("[data-book-next]");
     const positionLabel = root.querySelector("[data-book-position]");
-    const reward = root.querySelector("[data-book-reward]");
     const STORAGE_KEY = "playerTwoNotesBookV1";
 
-    if (!book || !pages.length || !previousButton || !nextButton || !positionLabel || !reward) return;
+    if (!book || !pages.length || !previousButton || !nextButton || !positionLabel) return;
 
     let state = {
         position: 0,
@@ -125,7 +124,6 @@
             positionLabel.textContent = (state.position + 1) + " / " + pages.length;
         }
 
-        reward.hidden = !state.completed;
     }
 
     function next() {
