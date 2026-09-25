@@ -1,1 +1,24 @@
-.pet-name-puzzle{margin-top:64px;padding-top:36px;border-top:1px solid var(--border)}.pet-name-puzzle h2{text-align:center;margin:0 0 28px;letter-spacing:.08em}.pet-name-board{display:grid;grid-template-columns:minmax(260px,1fr) minmax(260px,1fr);gap:42px;align-items:start}.pet-name-source,.pet-name-win-card{min-height:620px;border:1px dashed #5b534b;background:rgba(255,255,255,.018);padding:18px;box-sizing:border-box}.pet-name-source{display:flex;flex-direction:column;gap:10px}.pet-name-chip{min-height:42px;display:flex;align-items:center;padding:8px 14px;box-sizing:border-box;border:1px solid #756b60;background:#292521;color:#e8dfd2;font:600 15px/1.25 "Courier New",Courier,monospace;cursor:grab;user-select:none;touch-action:none}.pet-name-chip:active{cursor:grabbing}.pet-name-chip.is-dragging{position:fixed!important;z-index:10000!important;width:var(--pet-drag-width)!important;left:0!important;top:0!important;margin:0!important;transform:translate(var(--pet-drag-x),var(--pet-drag-y))!important;pointer-events:none}.pet-name-slots{display:grid;gap:8px}.pet-name-slot{min-height:48px;border:1px solid #5b534b;background:#211e1b;transition:background .12s,border-color .12s}.pet-name-slot.is-target{border-color:#d4b43d;background:rgba(212,180,61,.12)}.pet-name-slot.is-correct{border-color:#315f3a;background:rgba(35,88,48,.22)}.pet-name-slot.is-wrong{border-color:#8e3939;background:rgba(120,39,39,.18)}.pet-name-slot .pet-name-chip{width:100%;min-height:46px;border:0}.pet-name-slot.is-correct .pet-name-chip{cursor:default}.pet-name-win-card{border-style:solid;border-color:#9a876b;background:#d7c19a;box-shadow:0 12px 30px rgba(0,0,0,.28)}.pet-name-win-card[hidden]{display:none}@media(max-width:760px){.pet-name-board{grid-template-columns:1fr}.pet-name-source,.pet-name-win-card{min-height:auto}}
+.pet-name-puzzle{margin-top:64px;padding-top:36px;border-top:1px solid var(--border)}
+.pet-name-puzzle h2{text-align:center;margin:0 0 28px;letter-spacing:.08em}
+.pet-name-board{display:grid;grid-template-columns:minmax(260px,1fr) minmax(260px,1fr);grid-template-areas:"left right";gap:42px;align-items:start}
+.pet-name-source,.pet-name-win-card{grid-area:left;min-height:620px;box-sizing:border-box}
+.pet-name-source{display:flex;flex-direction:column;gap:10px;padding:18px;border:1px dashed var(--accent-deep,#45A29E);background:rgba(31,40,51,.5)}
+.pet-name-source[hidden]{display:none!important}
+.pet-name-slots{grid-area:right;display:grid;gap:8px}
+.pet-name-chip{min-height:42px;display:flex;align-items:center;padding:8px 14px;box-sizing:border-box;border:1px solid var(--accent-deep,#45A29E);background:var(--panel,#1F2833);color:var(--text,#C5C6C7);font:600 15px/1.25 "Courier New",Courier,monospace;cursor:grab;user-select:none;touch-action:none}
+.pet-name-chip:active{cursor:grabbing}
+.pet-name-chip.is-dragging{position:fixed!important;z-index:10000!important;width:var(--pet-drag-width)!important;left:0!important;top:0!important;margin:0!important;transform:translate(var(--pet-drag-x),var(--pet-drag-y))!important;pointer-events:none}
+.pet-name-slot{min-height:48px;border:1px solid rgba(69,162,158,.58);background:var(--panel,#1F2833);transition:background .12s,border-color .12s}
+.pet-name-slot.is-target{border-color:var(--accent,#66FCF1);background:rgba(102,252,241,.12)}
+.pet-name-slot.is-correct{border-color:var(--accent-deep,#45A29E);background:rgba(69,162,158,.18)}
+.pet-name-slot.is-wrong{border-color:var(--error,#D66C75);background:rgba(214,108,117,.12)}
+.pet-name-slot .pet-name-chip{width:100%;min-height:46px;border:0}
+.pet-name-slot.is-correct .pet-name-chip{cursor:default}
+.pet-name-win-card{position:relative;width:100%;padding:0;border:0;background:transparent;perspective:1400px;cursor:pointer;color:inherit}
+.pet-name-win-card[hidden]{display:none!important}
+.pet-name-card-inner{position:absolute;inset:0;display:block;transform-style:preserve-3d;transition:transform .7s cubic-bezier(.2,.75,.25,1)}
+.pet-name-win-card.is-flipped .pet-name-card-inner{transform:rotateY(180deg)}
+.pet-name-card-face{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;box-sizing:border-box;border:1px solid var(--accent-deep,#45A29E);background:var(--text,#C5C6C7);color:var(--background,#0B0C10);box-shadow:0 12px 30px rgba(0,0,0,.34);backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.pet-name-card-front{background:linear-gradient(145deg,rgba(102,252,241,.08),transparent 40%),var(--panel,#1F2833)}
+.pet-name-card-back{transform:rotateY(180deg);font:700 24px/1.35 "Courier New",Courier,monospace;letter-spacing:.08em}
+@media(max-width:760px){.pet-name-board{grid-template-columns:1fr;grid-template-areas:"left" "right"}.pet-name-source,.pet-name-win-card{min-height:420px}}
