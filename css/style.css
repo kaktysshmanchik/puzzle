@@ -1701,6 +1701,10 @@ h1 {
     gap: 10px;
 }
 
+.stat-message-split[hidden] {
+    display: none !important;
+}
+
 .stat-message-split p {
     margin: 0;
     padding: 10px;
