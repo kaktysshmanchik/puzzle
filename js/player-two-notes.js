@@ -177,6 +177,8 @@
 
         const letter = event.currentTarget;
         const rect = letter.getBoundingClientRect();
+        const layoutWidth = letter.offsetWidth;
+        const layoutHeight = letter.offsetHeight;
         const rotation = Number(letter.dataset.rotation || 0);
 
         event.preventDefault();
@@ -188,8 +190,8 @@
         };
 
         letter.style.setProperty("--letter-r", rotation + "deg");
-        letter.style.width = rect.width + "px";
-        letter.style.height = rect.height + "px";
+        letter.style.width = layoutWidth + "px";
+        letter.style.height = layoutHeight + "px";
         letter.style.left = (rect.left + window.scrollX) + "px";
         letter.style.top = (rect.top + window.scrollY) + "px";
         letter.style.zIndex = String(++layer);
