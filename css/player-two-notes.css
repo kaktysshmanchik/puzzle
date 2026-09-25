@@ -100,7 +100,7 @@
 
 .player-book{
     position:relative;
-    width:min(480px,57.333vw);
+    width:min(720px,86vw);
     transform-style:preserve-3d;
     outline:none;
     filter:drop-shadow(0 22px 30px rgba(0,0,0,.42));
@@ -226,16 +226,16 @@
 
 .player-letter-stack{
     position:relative;
-    width:min(390px,74vw);
-    height:min(530px,100vw);
-    margin:48px auto 14px;
+    width:min(560px,90vw);
+    height:min(760px,122vw);
+    margin:48px auto 24px;
 }
 
 .player-letter{
     position:absolute;
     left:50%;
     top:50%;
-    width:86%;
+    width:96%;
     max-height:96%;
     object-fit:contain;
     transform:
@@ -249,12 +249,12 @@
     cursor:default;
 }
 
-.player-letter:nth-child(1){--letter-x:-20px;--letter-y:10px;--letter-r:-5deg;z-index:1}
-.player-letter:nth-child(2){--letter-x:14px;--letter-y:-8px;--letter-r:4deg;z-index:2}
-.player-letter:nth-child(3){--letter-x:-8px;--letter-y:-2px;--letter-r:-2.5deg;z-index:3}
-.player-letter:nth-child(4){--letter-x:20px;--letter-y:8px;--letter-r:6deg;z-index:4}
-.player-letter:nth-child(5){--letter-x:-15px;--letter-y:-13px;--letter-r:-7deg;z-index:5}
-.player-letter:nth-child(6){--letter-x:5px;--letter-y:2px;--letter-r:2deg;z-index:6}
+.player-letter:nth-child(2){--letter-x:-20px;--letter-y:10px;--letter-r:-5deg;z-index:6}
+.player-letter:nth-child(3){--letter-x:14px;--letter-y:-8px;--letter-r:4deg;z-index:5}
+.player-letter:nth-child(4){--letter-x:-8px;--letter-y:-2px;--letter-r:-2.5deg;z-index:4}
+.player-letter:nth-child(5){--letter-x:20px;--letter-y:8px;--letter-r:6deg;z-index:3}
+.player-letter:nth-child(6){--letter-x:-15px;--letter-y:-13px;--letter-r:-7deg;z-index:2}
+.player-letter:nth-child(7){--letter-x:5px;--letter-y:2px;--letter-r:2deg;z-index:1}
 
 .player-letter.is-loose{
     transform:rotate(var(--letter-r,0deg));
@@ -267,8 +267,13 @@
 }
 
 .player-book-reward{
-    margin:12px auto 0;
+    position:absolute;
+    left:50%;
+    top:50%;
+    z-index:0;
+    width:min(90%,520px);
     padding:0;
+    transform:translate(-50%,-50%);
     color:var(--accent);
     font:700 clamp(15px,3.4vw,22px)/1.35 "Courier New",Courier,monospace;
     letter-spacing:.05em;
@@ -277,13 +282,9 @@
     user-select:all;
 }
 
-.player-book-reward[hidden]{
-    display:none!important;
-}
-
 @media(max-width:620px){
     .player-book-section{padding-top:38px}
-    .player-book{width:min(480px,61.333vw)}
+    .player-book{width:min(92vw,720px)}
     .player-book-controls{
         grid-template-columns:44px minmax(82px,auto) 44px;
         gap:10px;
