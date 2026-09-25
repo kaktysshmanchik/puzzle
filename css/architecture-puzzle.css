@@ -1,5 +1,5 @@
 .architecture-puzzle{margin-top:64px;padding-top:36px;border-top:1px solid var(--border)}
-.architecture-puzzle h2{text-align:center;margin:0 0 28px;letter-spacing:.08em;text-transform:none}
+.architecture-puzzle h2{text-align:center;margin:0 0 30px;color:var(--muted);font-family:inherit;font-size:18px;font-style:italic;font-weight:400;line-height:normal;letter-spacing:normal;text-transform:none}
 .architecture-puzzle-stage{position:relative;width:100%}
 .architecture-piece-tray{position:relative;width:100%;min-height:220px;margin:0 0 34px;border:1px dashed #5b534b;background:rgba(255,255,255,.018);box-sizing:border-box}
 .architecture-piece-tray[hidden]{display:none}
