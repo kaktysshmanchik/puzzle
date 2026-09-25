@@ -2354,3 +2354,13 @@ h1 {
         transition-duration: 0.01ms;
     }
 }
+
+
+/* Longest Reddit message text */
+.stat-message-copy {
+    margin: 0;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    color: #d8d0c5;
+    font: 14px/1.65 Georgia, serif;
+}
