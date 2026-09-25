@@ -81,3 +81,194 @@
 @media(prefers-reduced-motion:reduce){
     .player-notes-stream-track{animation-duration:420s}
 }
+
+
+/* Player Two Notes book */
+.player-book-section{
+    position:relative;
+    z-index:2;
+    padding:54px 0 20px;
+}
+
+.player-book-stage{
+    display:flex;
+    justify-content:center;
+    width:100%;
+    padding:18px 0 26px;
+    perspective:1800px;
+}
+
+.player-book{
+    position:relative;
+    width:min(720px,86vw);
+    transform-style:preserve-3d;
+    outline:none;
+    filter:drop-shadow(0 22px 30px rgba(0,0,0,.42));
+}
+
+.player-book:focus-visible{
+    box-shadow:0 0 0 2px rgba(102,252,241,.22);
+}
+
+.player-book-size-guide{
+    display:block;
+    width:100%;
+    height:auto;
+    visibility:hidden;
+    pointer-events:none;
+}
+
+.player-book-underlay{
+    position:absolute;
+    inset:0;
+    z-index:0;
+    border:1px solid rgba(69,162,158,.42);
+    background:
+        linear-gradient(90deg,rgba(102,252,241,.05),transparent 7%),
+        linear-gradient(145deg,rgba(102,252,241,.025),transparent 40%),
+        rgba(31,40,51,.88);
+    box-shadow:
+        inset 18px 0 26px rgba(0,0,0,.24),
+        inset 0 0 0 5px rgba(69,162,158,.025);
+}
+
+.player-book-underlay::before{
+    content:"";
+    position:absolute;
+    left:14px;
+    top:2%;
+    bottom:2%;
+    width:2px;
+    background:linear-gradient(to bottom,transparent,rgba(102,252,241,.24),transparent);
+}
+
+.player-book-page{
+    position:absolute;
+    inset:0;
+    transform-origin:left center;
+    transform:rotateY(0deg);
+    transform-style:preserve-3d;
+    backface-visibility:hidden;
+    -webkit-backface-visibility:hidden;
+    transition:transform 720ms cubic-bezier(.22,.72,.18,1),filter 720ms ease;
+    will-change:transform;
+    pointer-events:none;
+}
+
+.player-book-page::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    border:1px solid rgba(102,252,241,.18);
+    box-shadow:
+        inset 14px 0 18px rgba(0,0,0,.16),
+        inset -1px 0 rgba(255,255,255,.05);
+    pointer-events:none;
+}
+
+.player-book-page img{
+    display:block;
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    background:#111419;
+    user-select:none;
+    -webkit-user-drag:none;
+}
+
+.player-book-page.is-turned{
+    transform:rotateY(-178deg);
+    filter:brightness(.72);
+}
+
+.player-book-back-cover::after{
+    border-color:rgba(102,252,241,.24);
+}
+
+.player-book-controls{
+    display:grid;
+    grid-template-columns:48px minmax(90px,auto) 48px;
+    gap:14px;
+    align-items:center;
+    justify-content:center;
+    margin-top:4px;
+}
+
+.player-book-nav{
+    width:48px;
+    height:40px;
+    padding:0;
+    border:1px solid var(--accent-deep);
+    background:rgba(31,40,51,.9);
+    color:var(--accent);
+    font:700 20px/1 "Courier New",Courier,monospace;
+    cursor:pointer;
+}
+
+.player-book-nav:hover:not(:disabled),
+.player-book-nav:focus-visible{
+    border-color:var(--accent);
+    background:#263542;
+    outline:none;
+}
+
+.player-book-nav:disabled{
+    opacity:.28;
+    cursor:default;
+}
+
+.player-book-position{
+    color:var(--accent-deep);
+    font:700 11px/1 "Courier New",Courier,monospace;
+    letter-spacing:.12em;
+    text-align:center;
+}
+
+.player-book-reward{
+    width:min(720px,86vw);
+    margin:24px auto 0;
+    padding:16px 18px;
+    border:1px solid var(--accent-deep);
+    background:rgba(69,162,158,.1);
+    text-align:center;
+}
+
+.player-book-reward[hidden]{
+    display:none!important;
+}
+
+.player-book-reward span,
+.player-book-reward small{
+    display:block;
+    color:var(--accent-deep);
+    font:700 10px/1.35 "Courier New",Courier,monospace;
+    letter-spacing:.1em;
+}
+
+.player-book-reward strong{
+    display:block;
+    margin:10px 0;
+    color:var(--accent);
+    font-size:clamp(15px,3.5vw,22px);
+    letter-spacing:.05em;
+    overflow-wrap:anywhere;
+    user-select:all;
+}
+
+@media(max-width:620px){
+    .player-book-section{padding-top:38px}
+    .player-book{width:min(92vw,720px)}
+    .player-book-reward{width:min(92vw,720px)}
+    .player-book-controls{
+        grid-template-columns:44px minmax(82px,auto) 44px;
+        gap:10px;
+    }
+    .player-book-nav{
+        width:44px;
+        height:38px;
+    }
+}
+
+@media(prefers-reduced-motion:reduce){
+    .player-book-page{transition-duration:.01ms}
+}
