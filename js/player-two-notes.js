@@ -164,3 +164,65 @@
 
     render();
 })();
+
+
+(() => {
+    const stack = document.querySelector("[data-letter-stack]");
+    if (!stack) return;
+
+    const letters = Array.from(stack.querySelectorAll(".player-letter"));
+    let active = null;
+    let layer = 200;
+
+    function startDrag(event) {
+        if (event.button !== 0 && event.pointerType !== "touch") return;
+
+        const letter = event.currentTarget;
+        const rect = letter.getBoundingClientRect();
+        const rotation = Number(letter.dataset.rotation || 0);
+
+        event.preventDefault();
+
+        active = {
+            letter,
+            offsetX: event.clientX - rect.left,
+            offsetY: event.clientY - rect.top
+        };
+
+        letter.style.setProperty("--letter-r", rotation + "deg");
+        letter.style.width = rect.width + "px";
+        letter.style.height = rect.height + "px";
+        letter.style.left = (rect.left + window.scrollX) + "px";
+        letter.style.top = (rect.top + window.scrollY) + "px";
+        letter.style.zIndex = String(++layer);
+        letter.classList.add("is-loose", "is-dragging");
+
+        document.body.appendChild(letter);
+
+        window.addEventListener("pointermove", moveDrag, { passive: false });
+        window.addEventListener("pointerup", endDrag, { once: true });
+        window.addEventListener("pointercancel", endDrag, { once: true });
+    }
+
+    function moveDrag(event) {
+        if (!active) return;
+
+        event.preventDefault();
+
+        active.letter.style.left = (event.pageX - active.offsetX) + "px";
+        active.letter.style.top = (event.pageY - active.offsetY) + "px";
+    }
+
+    function endDrag() {
+        if (!active) return;
+
+        window.removeEventListener("pointermove", moveDrag);
+        active.letter.classList.remove("is-dragging");
+        active.letter.style.zIndex = String(++layer);
+        active = null;
+    }
+
+    letters.forEach((letter) => {
+        letter.addEventListener("pointerdown", startDrag);
+    });
+})();
