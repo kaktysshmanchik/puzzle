@@ -100,7 +100,7 @@
 
 .player-book{
     position:relative;
-    width:min(720px,86vw);
+    width:min(480px,57.333vw);
     transform-style:preserve-3d;
     outline:none;
     filter:drop-shadow(0 22px 30px rgba(0,0,0,.42));
@@ -224,41 +224,66 @@
     text-align:center;
 }
 
+.player-letter-stack{
+    position:relative;
+    width:min(390px,74vw);
+    height:min(530px,100vw);
+    margin:48px auto 14px;
+}
+
+.player-letter{
+    position:absolute;
+    left:50%;
+    top:50%;
+    width:86%;
+    max-height:96%;
+    object-fit:contain;
+    transform:
+        translate(calc(-50% + var(--letter-x,0px)),calc(-50% + var(--letter-y,0px)))
+        rotate(var(--letter-r,0deg));
+    transform-origin:center;
+    box-shadow:0 12px 28px rgba(0,0,0,.34);
+    user-select:none;
+    -webkit-user-drag:none;
+    touch-action:none;
+    cursor:default;
+}
+
+.player-letter:nth-child(1){--letter-x:-20px;--letter-y:10px;--letter-r:-5deg;z-index:1}
+.player-letter:nth-child(2){--letter-x:14px;--letter-y:-8px;--letter-r:4deg;z-index:2}
+.player-letter:nth-child(3){--letter-x:-8px;--letter-y:-2px;--letter-r:-2.5deg;z-index:3}
+.player-letter:nth-child(4){--letter-x:20px;--letter-y:8px;--letter-r:6deg;z-index:4}
+.player-letter:nth-child(5){--letter-x:-15px;--letter-y:-13px;--letter-r:-7deg;z-index:5}
+.player-letter:nth-child(6){--letter-x:5px;--letter-y:2px;--letter-r:2deg;z-index:6}
+
+.player-letter.is-loose{
+    transform:rotate(var(--letter-r,0deg));
+    max-height:none;
+}
+
+.player-letter.is-dragging{
+    z-index:10020!important;
+    box-shadow:0 18px 38px rgba(0,0,0,.48);
+}
+
 .player-book-reward{
-    width:min(720px,86vw);
-    margin:24px auto 0;
-    padding:16px 18px;
-    border:1px solid var(--accent-deep);
-    background:rgba(69,162,158,.1);
+    margin:12px auto 0;
+    padding:0;
+    color:var(--accent);
+    font:700 clamp(15px,3.4vw,22px)/1.35 "Courier New",Courier,monospace;
+    letter-spacing:.05em;
     text-align:center;
+    overflow-wrap:anywhere;
+    user-select:all;
 }
 
 .player-book-reward[hidden]{
     display:none!important;
 }
 
-.player-book-reward span,
-.player-book-reward small{
-    display:block;
-    color:var(--accent-deep);
-    font:700 10px/1.35 "Courier New",Courier,monospace;
-    letter-spacing:.1em;
-}
-
-.player-book-reward strong{
-    display:block;
-    margin:10px 0;
-    color:var(--accent);
-    font-size:clamp(15px,3.5vw,22px);
-    letter-spacing:.05em;
-    overflow-wrap:anywhere;
-    user-select:all;
-}
-
 @media(max-width:620px){
     .player-book-section{padding-top:38px}
-    .player-book{width:min(92vw,720px)}
-    .player-book-reward{width:min(92vw,720px)}
+    .player-book{width:min(480px,61.333vw)}
     .player-book-controls{
         grid-template-columns:44px minmax(82px,auto) 44px;
         gap:10px;
