@@ -13,9 +13,14 @@ function saveUnlockedSections(unlockedSections) {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(unlockedSections));
 }
 
-function resetPuzzleProgress() {
+function clearAllPuzzleProgress() {
     localStorage.removeItem(STORAGE_KEY);
     localStorage.removeItem("jonathanScrabbleStateV1");
+    localStorage.removeItem("loreMessageRebuildV1");
+}
+
+function resetPuzzleProgress() {
+    clearAllPuzzleProgress();
     window.location.reload();
 }
 
@@ -24,8 +29,7 @@ window.resetPuzzleProgress = resetPuzzleProgress;
 const params = new URLSearchParams(window.location.search);
 
 if (params.get("reset") === "1") {
-    localStorage.removeItem(STORAGE_KEY);
-    localStorage.removeItem("jonathanScrabbleStateV1");
+    clearAllPuzzleProgress();
     params.delete("reset");
 
     const cleanQuery = params.toString();
@@ -56,13 +60,9 @@ rows.forEach((row) => {
     }
 
     function showError() {
-        if (errorTimer !== null) {
-            clearTimeout(errorTimer);
-        }
-
+        if (errorTimer !== null) clearTimeout(errorTimer);
         input.classList.add("invalid");
         tooltip.classList.add("visible");
-
         errorTimer = window.setTimeout(() => {
             clearError();
             errorTimer = null;
@@ -71,17 +71,12 @@ rows.forEach((row) => {
 
     function unlock({ save = true } = {}) {
         clearError();
-
         link.classList.remove("disabled");
         link.classList.add("unlocked");
         link.setAttribute("aria-disabled", "false");
-
         input.disabled = true;
         verifyButton.disabled = true;
-        if (devUnlockButton) {
-            devUnlockButton.disabled = true;
-        }
-
+        if (devUnlockButton) devUnlockButton.disabled = true;
         if (save) {
             unlockedSections[sectionId] = true;
             saveUnlockedSections(unlockedSections);
@@ -93,33 +88,17 @@ rows.forEach((row) => {
             unlock();
             return;
         }
-
         showError();
     }
 
-    if (unlockedSections[sectionId]) {
-        unlock({ save: false });
-    }
-
+    if (unlockedSections[sectionId]) unlock({ save: false });
     verifyButton.addEventListener("click", verifyPasscode);
-
-    if (devUnlockButton) {
-        devUnlockButton.addEventListener("click", () => {
-            unlock();
-        });
-    }
-
+    if (devUnlockButton) devUnlockButton.addEventListener("click", () => unlock());
     input.addEventListener("keydown", (event) => {
-        if (event.key === "Enter") {
-            verifyPasscode();
-        }
+        if (event.key === "Enter") verifyPasscode();
     });
-
     input.addEventListener("input", clearError);
-
     link.addEventListener("click", (event) => {
-        if (!link.classList.contains("unlocked")) {
-            event.preventDefault();
-        }
+        if (!link.classList.contains("unlocked")) event.preventDefault();
     });
 });
