@@ -2509,3 +2509,129 @@ h1 {
         display: none;
     }
 }
+
+
+/* Statistics datapad message view */
+.stat-message-modal {
+    width: min(920px, calc(100vw - 20px));
+    max-width: 920px;
+    min-height: 0;
+    max-height: calc(100vh - 20px);
+    padding: 0;
+    border: 0;
+    overflow: visible;
+    background: transparent;
+    color: var(--text);
+    box-shadow: none;
+}
+
+.stat-message-modal::backdrop {
+    background: rgba(8, 10, 13, 0.84);
+    backdrop-filter: blur(4px);
+}
+
+.stat-datapad-shell {
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.stat-datapad-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: calc(100vh - 20px);
+    object-fit: contain;
+    pointer-events: none;
+    user-select: none;
+}
+
+.stat-datapad-screen {
+    position: absolute;
+    top: 21%;
+    right: 18%;
+    bottom: 21%;
+    left: 18%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: clamp(6px, 1.2vw, 14px);
+    background: transparent;
+    color: #d9fbf8;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(102, 252, 241, 0.55) transparent;
+    overscroll-behavior: contain;
+}
+
+.stat-datapad-screen::-webkit-scrollbar {
+    width: 7px;
+}
+
+.stat-datapad-screen::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.stat-datapad-screen::-webkit-scrollbar-thumb {
+    border-radius: 999px;
+    background: rgba(102, 252, 241, 0.48);
+}
+
+.stat-datapad-screen .stat-message-copy {
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    color: inherit;
+    font: clamp(10px, 1.35vw, 14px)/1.52 "Courier New", Courier, monospace;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+.stat-message-modal-close {
+    position: absolute;
+    z-index: 4;
+    top: 8.5%;
+    right: 10%;
+    width: 34px;
+    height: 34px;
+    padding: 0;
+    border: 1px solid rgba(102, 252, 241, 0.42);
+    border-radius: 50%;
+    background: rgba(11, 12, 16, 0.72);
+    color: var(--accent);
+    font: 22px/1 Georgia, serif;
+    cursor: pointer;
+}
+
+.stat-message-modal-close:hover,
+.stat-message-modal-close:focus-visible {
+    border-color: var(--accent);
+    background: rgba(31, 40, 51, 0.9);
+    color: var(--accent);
+    outline: none;
+}
+
+@media (max-width: 520px) {
+    .stat-message-modal {
+        width: calc(100vw - 8px);
+        max-height: calc(100vh - 8px);
+    }
+
+    .stat-datapad-screen {
+        top: 20%;
+        right: 17%;
+        bottom: 20%;
+        left: 17%;
+        padding: 5px;
+    }
+
+    .stat-datapad-screen .stat-message-copy {
+        font-size: 9px;
+        line-height: 1.45;
+    }
+
+    .stat-message-modal-close {
+        top: 7.5%;
+        right: 8.5%;
+        width: 30px;
+        height: 30px;
+    }
+}
