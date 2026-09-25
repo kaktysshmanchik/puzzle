@@ -1,21 +1,53 @@
 (()=>{if(!document.querySelector('link[data-site-theme]')){const l=document.createElement('link');l.rel='stylesheet';l.href='css/theme.css';l.dataset.siteTheme='';document.head.appendChild(l);}})();
 (() => {
+    const STORAGE_KEY = "jonathanStatisticsStateV1";
+
+    function freshState() {
+        return {
+            answers: {},
+            checksumVerified: false,
+            checksumValue: ""
+        };
+    }
+
+    function loadState() {
+        try {
+            const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
+
+            if (saved && typeof saved === "object") {
+                return {
+                    answers: saved.answers && typeof saved.answers === "object" ? saved.answers : {},
+                    checksumVerified: Boolean(saved.checksumVerified),
+                    checksumValue: typeof saved.checksumValue === "string" ? saved.checksumValue : ""
+                };
+            }
+        } catch (_) {}
+
+        return freshState();
+    }
+
+    function saveState() {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    }
+
+    if (new URLSearchParams(window.location.search).get("reset") === "1") {
+        localStorage.removeItem(STORAGE_KEY);
+    }
+
+    const state = loadState();
     const questions = document.querySelectorAll("[data-stat-question]");
 
-    questions.forEach((question) => {
+    questions.forEach((question, index) => {
         const input = question.querySelector(".stat-guess-input");
         const button = question.querySelector(".stat-verify-button");
-        const guessRow = question.querySelector(".stat-guess-row");
         const detail = question.querySelector(".stat-detail");
+        const questionKey = question.dataset.statId || question.dataset.answer || String(index);
 
-        if (!input || !button || !guessRow) return;
+        if (!input || !button) return;
 
-        function revealAnswer() {
-            const guess = input.value.trim();
-            if (!guess) {
-                input.focus();
-                return;
-            }
+        function renderAnswer(guess) {
+            const guessRow = question.querySelector(".stat-guess-row");
+            if (!guessRow) return;
 
             const displayAnswer = question.dataset.displayAnswer || question.dataset.answer || "";
             const result = document.createElement("div");
@@ -35,6 +67,19 @@
             }
         }
 
+        function revealAnswer() {
+            const guess = input.value.trim();
+
+            if (!guess) {
+                input.focus();
+                return;
+            }
+
+            state.answers[questionKey] = guess;
+            saveState();
+            renderAnswer(guess);
+        }
+
         button.addEventListener("click", revealAnswer);
 
         input.addEventListener("keydown", (event) => {
@@ -43,6 +88,10 @@
                 revealAnswer();
             }
         });
+
+        if (Object.prototype.hasOwnProperty.call(state.answers, questionKey)) {
+            renderAnswer(String(state.answers[questionKey]));
+        }
     });
 
     const checksumRoot = document.querySelector("[data-stat-checksum]");
@@ -63,6 +112,22 @@
             }
         }
 
+        function showChecksumSuccess(value) {
+            checksumInput.value = value || expectedChecksum;
+            checksumInput.classList.remove("invalid");
+            checksumInput.disabled = true;
+            checksumButton.disabled = true;
+
+            if (checksumStatus) {
+                checksumStatus.textContent = "Checksum accepted. Archive integrity confirmed.";
+                checksumStatus.classList.add("is-valid");
+            }
+
+            if (checksumToken) {
+                checksumToken.hidden = false;
+            }
+        }
+
         function verifyChecksum() {
             const digitsOnly = checksumInput.value.replace(/\D/g, "");
 
@@ -72,19 +137,10 @@
             }
 
             if (digitsOnly === expectedChecksum) {
-                checksumInput.classList.remove("invalid");
-                checksumInput.disabled = true;
-                checksumButton.disabled = true;
-
-                if (checksumStatus) {
-                    checksumStatus.textContent = "Checksum accepted. Archive integrity confirmed.";
-                    checksumStatus.classList.add("is-valid");
-                }
-
-                if (checksumToken) {
-                    checksumToken.hidden = false;
-                }
-
+                state.checksumVerified = true;
+                state.checksumValue = checksumInput.value.trim();
+                saveState();
+                showChecksumSuccess(state.checksumValue);
                 return;
             }
 
@@ -106,6 +162,10 @@
         });
 
         checksumInput.addEventListener("input", clearChecksumError);
+
+        if (state.checksumVerified) {
+            showChecksumSuccess(state.checksumValue);
+        }
     }
 
     document.querySelectorAll("[data-message-modal]").forEach((link) => {
