@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/lore-message.css">
     <link rel="stylesheet" href="css/pet-names.css">
     <link rel="stylesheet" href="css/architecture-puzzle.css">
+    <link rel="stylesheet" href="css/theme.css">
 </head>
 <body>
 <main class="page">
@@ -24,16 +25,21 @@
     </section>
 
     <section class="pet-name-puzzle" data-pet-name-puzzle aria-label="Pet name ordering puzzle">
-        <h2>[UPDATE]</h2>
+        <h2>By Any Other Name</h2>
         <div class="pet-name-board">
             <div class="pet-name-source" data-pet-name-source aria-label="Shuffled pet names"></div>
-            <div class="pet-name-win-card" data-pet-name-card hidden></div>
+            <button class="pet-name-win-card" data-pet-name-card hidden type="button" aria-label="Turn over reward card">
+                <span class="pet-name-card-inner">
+                    <span class="pet-name-card-face pet-name-card-front"></span>
+                    <span class="pet-name-card-face pet-name-card-back">[UPDATE]</span>
+                </span>
+            </button>
             <div class="pet-name-slots" data-pet-name-slots aria-label="Pet name order slots"></div>
         </div>
     </section>
 
     <section class="architecture-puzzle" data-architecture-puzzle aria-label="Architecture picture puzzle">
-        <h2>update</h2>
+        <h2>Fantastic architecture. Only an incredibly advanced race could have built it.</h2>
         <div class="architecture-puzzle-stage" data-architecture-stage>
             <div class="architecture-piece-tray" data-architecture-tray aria-label="Loose picture pieces"></div>
             <div class="architecture-build-board" data-architecture-board aria-label="Picture assembly area"></div>
