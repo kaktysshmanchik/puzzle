@@ -65,21 +65,14 @@
             </div>
         </div>
 
-        <div class="link-row" data-section="future-dlc" data-passcode="VrgjJd6rasz8kS7YO0WI7arI8kq">
-            <a class="section-link disabled" href="future-dlc.html" aria-disabled="true">Future DLC</a>
-            <div class="passcode-control">
-                <input type="text" class="passcode-input" placeholder="passcode" aria-label="Future DLC passcode" autocomplete="off">
-                <button type="button" class="verify-button">Verify</button>
-                <button type="button" class="dev-unlock-button" title="Development shortcut">Unlock</button>
-                <div class="tooltip" role="status">Wrong passcode. Try harder, cheeky bastard.</div>
-            </div>
-        </div>
-
-        <div class="link-row" data-section="vault" data-passcode="YlWirzQB3UwEh2FWl99Lec9Lb40">
+        <div class="link-row" data-section="vault" data-passcode="YlWirzQB3UwEh2FWl99Lec9Lb40" data-verification-disabled="true">
             <a class="section-link disabled" href="vault.html" aria-disabled="true">The vault</a>
             <div class="passcode-control">
                 <input type="text" class="passcode-input" placeholder="passcode" aria-label="The vault passcode" autocomplete="off">
-                <button type="button" class="verify-button">Verify</button>
+                <span class="vault-verify-wrap">
+                    <button type="button" class="verify-button" disabled>Verify</button>
+                    <span class="vault-verify-tooltip" role="status">It will become available in due time.</span>
+                </span>
                 <button type="button" class="dev-unlock-button" title="Development shortcut">Unlock</button>
                 <div class="tooltip" role="status">Wrong passcode. Try harder, cheeky bastard.</div>
             </div>
