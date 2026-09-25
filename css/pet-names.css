@@ -1,5 +1,5 @@
 .pet-name-puzzle{margin-top:64px;padding-top:36px;border-top:1px solid var(--border)}
-.pet-name-puzzle h2{text-align:center;margin:0 0 28px;letter-spacing:.08em}
+.pet-name-puzzle h2{text-align:center;margin:0 0 30px;color:var(--muted);font-family:inherit;font-size:18px;font-style:italic;font-weight:400;line-height:normal;letter-spacing:normal}
 .pet-name-board{display:grid;grid-template-columns:minmax(260px,1fr) minmax(260px,1fr);grid-template-areas:"left right";gap:42px;align-items:start}
 .pet-name-source,.pet-name-win-card{grid-area:left;min-height:620px;box-sizing:border-box}
 .pet-name-source{display:flex;flex-direction:column;gap:10px;padding:18px;border:1px dashed var(--accent-deep,#45A29E);background:rgba(31,40,51,.5)}
