@@ -2635,3 +2635,49 @@ h1 {
         height: 30px;
     }
 }
+
+
+/* Vault availability tooltip */
+.vault-verify-wrap {
+    position: relative;
+    display: inline-flex;
+}
+
+.vault-verify-wrap .verify-button {
+    width: 100%;
+}
+
+.vault-verify-tooltip {
+    position: absolute;
+    z-index: 20;
+    left: 50%;
+    top: calc(100% + 8px);
+    width: max-content;
+    max-width: min(280px, 80vw);
+    padding: 8px 10px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    transform: translate(-50%, -4px);
+    background: var(--panel);
+    color: var(--text);
+    font-size: 14px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 120ms ease, transform 120ms ease, visibility 120ms ease;
+}
+
+.vault-verify-wrap:hover .vault-verify-tooltip,
+.vault-verify-wrap:focus-within .vault-verify-tooltip {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, 0);
+}
+
+@media (max-width: 700px) {
+    .vault-verify-tooltip {
+        white-space: normal;
+        width: min(260px, 80vw);
+    }
+}
