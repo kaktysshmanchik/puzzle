@@ -16,12 +16,12 @@
         <p class="lore-puzzle-quote">A long time ago in a galaxy far, far away...</p>
         <div class="message-rebuild-board">
             <div class="message-piece-pile" data-message-pile aria-label="Shuffled message fragments"></div>
-            <div class="message-envelope" data-message-envelope hidden aria-label="Completed message reward">
-                <div class="envelope-back"></div>
-                <div class="envelope-card"><span>[UPDATE]</span><span>tries: <strong data-message-tries>0</strong></span></div>
-                <div class="envelope-front"></div>
-                <button class="envelope-flap" data-envelope-flap type="button" aria-label="Pull open envelope flap"></button>
-            </div>
+            <button class="message-win-card" data-message-card hidden type="button" aria-label="Turn over reward card">
+                <span class="message-win-card-inner">
+                    <span class="message-win-card-face message-win-card-front"></span>
+                    <span class="message-win-card-face message-win-card-back"><span>[UPDATE]</span><span>tries: <strong data-message-tries>0</strong></span></span>
+                </span>
+            </button>
             <div class="message-order-grid" data-message-grid aria-label="Message reconstruction slots"></div>
         </div>
     </section>
