@@ -2364,3 +2364,148 @@ h1 {
     color: #d8d0c5;
     font: 14px/1.65 Georgia, serif;
 }
+
+
+/* Dossier audio player */
+.dossier-audio-player {
+    display: grid;
+    grid-template-columns: 38px minmax(0, 1fr) auto auto auto;
+    gap: 9px;
+    align-items: center;
+    margin-top: 16px;
+    padding: 10px 11px;
+    border: 1px solid rgba(69, 162, 158, 0.5);
+    background: rgba(11, 12, 16, 0.3);
+}
+
+.dossier-audio-player audio {
+    display: none;
+}
+
+.dossier-audio-toggle {
+    display: grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    padding: 0;
+    border: 1px solid var(--accent-deep, #45A29E);
+    border-radius: 50%;
+    background: var(--panel, #1F2833);
+    color: var(--accent, #66FCF1);
+    font: 700 14px/1 "Courier New", Courier, monospace;
+    cursor: pointer;
+}
+
+.dossier-audio-toggle:hover,
+.dossier-audio-toggle:focus-visible {
+    border-color: var(--accent, #66FCF1);
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(102, 252, 241, 0.12);
+}
+
+.dossier-audio-toggle span {
+    transform: translateX(1px);
+}
+
+.dossier-audio-player.is-playing .dossier-audio-toggle span {
+    transform: none;
+    font-size: 11px;
+    letter-spacing: -2px;
+}
+
+.dossier-audio-progress {
+    --audio-progress: 0%;
+    width: 100%;
+    min-width: 70px;
+    height: 18px;
+    margin: 0;
+    appearance: none;
+    -webkit-appearance: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+.dossier-audio-progress::-webkit-slider-runnable-track {
+    height: 4px;
+    border-radius: 999px;
+    background:
+        linear-gradient(
+            to right,
+            var(--accent, #66FCF1) 0,
+            var(--accent, #66FCF1) var(--audio-progress),
+            rgba(197, 198, 199, 0.24) var(--audio-progress),
+            rgba(197, 198, 199, 0.24) 100%
+        );
+}
+
+.dossier-audio-progress::-webkit-slider-thumb {
+    width: 12px;
+    height: 12px;
+    margin-top: -4px;
+    border: 0;
+    border-radius: 50%;
+    appearance: none;
+    -webkit-appearance: none;
+    background: var(--accent, #66FCF1);
+    box-shadow: 0 0 0 2px var(--panel, #1F2833);
+}
+
+.dossier-audio-progress::-moz-range-track {
+    height: 4px;
+    border: 0;
+    border-radius: 999px;
+    background: rgba(197, 198, 199, 0.24);
+}
+
+.dossier-audio-progress::-moz-range-progress {
+    height: 4px;
+    border-radius: 999px;
+    background: var(--accent, #66FCF1);
+}
+
+.dossier-audio-progress::-moz-range-thumb {
+    width: 12px;
+    height: 12px;
+    border: 2px solid var(--panel, #1F2833);
+    border-radius: 50%;
+    background: var(--accent, #66FCF1);
+}
+
+.dossier-audio-progress:focus-visible {
+    outline: 1px solid var(--accent, #66FCF1);
+    outline-offset: 3px;
+}
+
+.dossier-audio-time,
+.dossier-audio-separator {
+    color: var(--accent-deep, #45A29E);
+    font: 700 11px/1 "Courier New", Courier, monospace;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+}
+
+.dossier-audio-separator {
+    opacity: 0.65;
+}
+
+@media (max-width: 620px) {
+    .dossier-audio-player {
+        grid-template-columns: 38px minmax(0, 1fr);
+        gap: 8px 10px;
+    }
+
+    .dossier-audio-time,
+    .dossier-audio-separator {
+        grid-row: 2;
+    }
+
+    .dossier-audio-time[data-audio-current] {
+        grid-column: 2;
+        justify-self: start;
+    }
+
+    .dossier-audio-separator,
+    .dossier-audio-time[data-audio-duration] {
+        display: none;
+    }
+}
